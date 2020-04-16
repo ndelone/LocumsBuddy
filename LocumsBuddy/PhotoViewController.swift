@@ -79,7 +79,7 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
         //guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         if let imagePath = imageURL?.appendingPathComponent(imageName).path {
             print("Path is: \(imagePath)")
-            guard let data = image.jpegData(compressionQuality: 1) else { return }
+            guard let data = image.jpegData(compressionQuality: 0.15) else { return }
             //        Checks if file exists, removes it if so.
             if FileManager.default.fileExists(atPath: imagePath) {
                 do {

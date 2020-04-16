@@ -13,6 +13,7 @@ import RealmSwift
 class ViewController: UIViewController {
     let notificationManager = LocalNotificationManager()
     
+    @IBOutlet weak var documentListButtonOutlet: UIButton!
     @IBOutlet weak var cvButtonOutlet: UIButton!
     @IBOutlet weak var expirationListButtonOutlet: UIButton!
     @IBOutlet weak var nationalButtonOutlet: UIButton!
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
             addShadows(cvButtonOutlet)
         addShadows(expirationListButtonOutlet)
         addShadows(stateButtonOutlet)
-
+        addShadows(documentListButtonOutlet)
         initializingFunction()
     }
     

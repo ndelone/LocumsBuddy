@@ -35,38 +35,35 @@ class CVViewController: UIViewController, PDFDocumentDelegate {
         } else {
             //No CV Selected, displays default message.
             if let documentURL = Bundle.main.url(forResource: "NothingHere", withExtension: "pdf") {
-                print("Document URL is: \(documentURL)")
-                loadDocument(documentURL: documentURL)
+                
+                
+                // Create Attachment
+                let imageAttachment = NSTextAttachment()
+                imageAttachment.image = UIImage(systemName:"square.and.arrow.up")
+                // Set bound to reposition
+                let imageOffsetY: CGFloat = 0.0
+                imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
+                // Create string with attachment
+                let attachmentString = NSAttributedString(attachment: imageAttachment)
+                // Initialize mutable string
+                let iconString = NSMutableAttributedString(string: "")
+                // Add image to mutable string
+                iconString.append(attachmentString)
+                
+                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 350, height: 300))
+                label.numberOfLines = 0
+                label.lineBreakMode = .byWordWrapping
+                label.center = CGPoint(x: 200, y: 385)
+                
+                let string = NSMutableAttributedString(string: "To upload a CV,\n\n 1) Open up your CV as a PDF (by emailing it to yourself, or opening it online) \n\n 2) Select the export icon   ")
+                string.append(iconString)
+                let secondString = NSMutableAttributedString(string: "\n\n 3) Select 'Copy to LocumsBuddy' or 'More' if that is not available. \n\n 4) Your CV should appear here.")
+                string.append(secondString)
+                label.attributedText = string
+                label.sizeToFit()
+                self.view.addSubview(label)
             }
         }
-    }
-    //MARK: - WaterMark selection
-
-    func chooseWaterMark() {
-        waterMarkAlert()
-        weak var pvc = self.presentingViewController?.children[1] as? CVViewController
-        if let documentURL = Bundle.main.url(forResource: "BaseCV", withExtension: "pdf") {
-            pvc?.loadDocument(documentURL: documentURL)
-        }
-    }
-    
-    func waterMarkAlert(){
-        var textField = UITextField()
-        let alert = UIAlertController(title: "What text would you like to watermark your CV?", message: "", preferredStyle: .alert)
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Exclusive Presentation For ABEM General"
-            textField = alertTextField
-        }
-        let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-            waterMark = NSString(string: textField.text!)
-            print(waterMark)
-            self.performSegue(withIdentifier: "watermarkSegue", sender: self)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alert.addAction(cancelAction)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-
     }
     
     //MARK: - Data loading

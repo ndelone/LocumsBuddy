@@ -34,7 +34,7 @@ class SideMenuViewController: UITableViewController, MFMailComposeViewController
     
     func chooseWaterMark(){
         var textField = UITextField()
-        let alert = UIAlertController(title: "What text would you like to watermark your CV?", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "What text would you like to watermark your CV?", message: "(The watermark will disappear after you return to the starting screen)", preferredStyle: .alert)
         let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("BaseCV.pdf")
         if FileManager.default.fileExists(atPath: documentURL.path) {
             alert.addTextField { (alertTextField) in

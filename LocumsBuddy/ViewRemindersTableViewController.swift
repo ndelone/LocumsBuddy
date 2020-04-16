@@ -53,12 +53,13 @@ class RemindersTableViewController: UITableViewController {
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         // Configure the cell...
         let currentLicense = resultsList?[indexPath.row]
-        let parentString = (currentLicense?.parentCategory.first?.name) ?? ""
+        var parentString = (currentLicense?.parentCategory.first?.name) ?? ""
+        parentString += (parentString != "" ? " " : "" )
         if let expirationDate = currentLicense!.expirationDate, let licenseTypeString = currentLicense?.licenseType {
             let dateFormatterPrint = DateFormatter()
             dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
             let expirationDateString = dateFormatterPrint.string(from: expirationDate)
-            cell.textLabel?.text = "\(parentString) \(licenseTypeString) expires on \(expirationDateString)"
+            cell.textLabel?.text = "\(parentString)\(licenseTypeString) expires on \(expirationDateString)"
         } else {
             cell.textLabel?.text = "No scheduled reminders"
         }

@@ -11,6 +11,9 @@
 		6D01B806243CE6CB0044CE10 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B805243CE6CB0044CE10 /* License.swift */; };
 		6D01B808243CE8BC0044CE10 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */; };
 		6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */; };
+		6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */; };
+		6D3F415F2447996100BCF99B /* CredentialManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */; };
+		6D3F4161244799BA00BCF99B /* CredentialManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F4160244799BA00BCF99B /* CredentialManagerTableViewController.swift */; };
 		6D42B84E2441515D0018C6D7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */; };
 		6D4828BB243E51D70021BEDB /* SetAlarmSideMenuTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */; };
 		6D4828BD243F55A70021BEDB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4828BC243F55A70021BEDB /* PhotoViewController.swift */; };
@@ -34,6 +37,9 @@
 		6D01B805243CE6CB0044CE10 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseTableViewController.swift; sourceTree = "<group>"; };
+		6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
+		6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManagerViewController.swift; sourceTree = "<group>"; };
+		6D3F4160244799BA00BCF99B /* CredentialManagerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManagerTableViewController.swift; sourceTree = "<group>"; };
 		6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmSideMenuTableController.swift; sourceTree = "<group>"; };
 		6D4828BC243F55A70021BEDB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		6D4828BE243FEBD20021BEDB /* ViewRemindersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRemindersTableViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +120,10 @@
 				6DB998A3243B8A4400506516 /* CVViewController.swift */,
 				6DB998A7243B8BC800506516 /* SideMenuViewController.swift */,
 				6DB99895243B72F300506516 /* Main.storyboard */,
+				6D3F4160244799BA00BCF99B /* CredentialManagerTableViewController.swift */,
+				6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */,
 				6D4828BE243FEBD20021BEDB /* ViewRemindersTableViewController.swift */,
+				6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */,
 				6DB998AD243BD62700506516 /* StateTableViewController.swift */,
 				6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */,
 				6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */,
@@ -264,6 +273,7 @@
 				6DB998A4243B8A4400506516 /* CVViewController.swift in Sources */,
 				6DB998AE243BD62700506516 /* StateTableViewController.swift in Sources */,
 				6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */,
+				6D3F415F2447996100BCF99B /* CredentialManagerViewController.swift in Sources */,
 				6DB99890243B72F300506516 /* AppDelegate.swift in Sources */,
 				6D66B27F243CBEE0001B09FB /* LicenseRepository.swift in Sources */,
 				6D01B808243CE8BC0044CE10 /* LicenseViewController.swift in Sources */,
@@ -271,6 +281,8 @@
 				6D66B27D243CBE83001B09FB /* State.swift in Sources */,
 				6DB998A8243B8BC800506516 /* SideMenuViewController.swift in Sources */,
 				6D4828BF243FEBD20021BEDB /* ViewRemindersTableViewController.swift in Sources */,
+				6D3F4161244799BA00BCF99B /* CredentialManagerTableViewController.swift in Sources */,
+				6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */,
 				6D01B806243CE6CB0044CE10 /* License.swift in Sources */,
 				6D4828BD243F55A70021BEDB /* PhotoViewController.swift in Sources */,
 			);
