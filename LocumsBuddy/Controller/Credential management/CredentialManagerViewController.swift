@@ -10,9 +10,9 @@ import UIKit
 
 class CredentialManagerViewController: UIViewController {
 
-    let credentialTableManager = CredentialManagerTableViewController()
+    
     @IBAction func employerButtonPressed(_ sender: UIButton) {
-        self.navigationController?.pushViewController(credentialTableManager, animated: true)
+    
     }
     override func viewDidLoad() {
         super.viewDidLoad()

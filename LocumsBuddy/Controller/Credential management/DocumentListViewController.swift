@@ -40,26 +40,27 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         //Iterate through list, adding data to document
         documentString += iterateStateList(stateList : generateLists())
         documentString += iterateNationalList()
+        documentString += iterateEmployerList()
         //Generate HTML file
         makeHtml(stringHTML: documentString)
         //Save as PDF
         //Display
-
-            self.makeWebView()
-
+        
+        self.makeWebView()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
             self.activityIndicator.stopAnimating()
             if let document = PDFDocument(url: self.defaultPath) {
                 // Center document on gray background
                 self.pdfView?.autoScales = true
                 self.pdfView?.backgroundColor = UIColor.lightGray
-
+                
                 // 1. Set delegate
                 document.delegate = self
                 self.pdfView?.document = document
             }
         }
-
+        
         
         
         // Do any additional setup after loading the view.
@@ -119,6 +120,30 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         }
         return nationalLicenseString
     }
+    
+    func iterateEmployerList() -> String {
+        var employerString = "<h1>Previous Employers</h1>"
+        guard let employerList = realm.objects(LicenseRepository.self).first?.employerList else { return "" }
+        for employer in employerList{
+            if let startDate = employer.startDate, let endDate = employer.endDate{
+                employerString += "<p>Employer name: \(employer.name!)<br />Position: \(employer.position)<br />Start date: \(formatDate(startDate))<br />End date: \(formatDate(endDate))<br />Chairperson: \(employer.departmentChair)<br />Address: \(employer.address)<br />Contact number: \(employer.phone)<br />\(employer.comment != "" ? "Comments: \(employer.comment)" : "")</p>"
+            }
+        }
+        return employerString
+    }
+    
+    func formatDate(_ date : Date) -> String {
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
+        let formattedDateString = dateFormatterPrint.string(from: date)
+        return formattedDateString
+    }
+    
+    
+    //MARK: - HTML construction
+    
+    
+    
     
     func makeHtml(stringHTML : String){
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first

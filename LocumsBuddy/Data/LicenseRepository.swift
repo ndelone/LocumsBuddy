@@ -11,4 +11,5 @@ class LicenseRepository : Object {
     let stateChoiceList = List<State>()
     let stateMedicalLicenseList = List<License>()
     let nationalLicenseList = List<License>()
+    let employerList = List<Employer>()
 }
