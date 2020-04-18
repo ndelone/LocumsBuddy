@@ -41,6 +41,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         documentString += iterateStateList(stateList : generateLists())
         documentString += iterateNationalList()
         documentString += iterateEmployerList()
+        documentString += iterateHealthList()
         //Generate HTML file
         makeHtml(stringHTML: documentString)
         //Save as PDF
@@ -132,6 +133,22 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         return employerString
     }
     
+    func iterateHealthList() -> String{
+        var healthString = "<h1>Health Clearance Documents</h1>"
+        guard let healthList = realm.objects(LicenseRepository.self).first?.healthList else { return "" }
+        for document in healthList{
+            let imageURL = getHealthDocumentPath(selectedDocument: document)
+            print(imageURL)
+            healthString += "<p>Document name: \(document.name!)<br />Comments: \(document.comment!)"
+            if (FileManager.default.fileExists(atPath: imageURL.path)) {
+                print("file exists!")
+                healthString += "<p><img src=\"\(imageURL)\" width=\"360\" height=\"240\"></p>"
+            }
+        }
+        return healthString
+    }
+    
+    
     func formatDate(_ date : Date) -> String {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
@@ -204,6 +221,15 @@ extension DocumentListViewController: WKNavigationDelegate {
         return imagePath
     }
     
+    func getHealthDocumentPath(selectedDocument: HealthDocument) -> URL{
+        let fileManager = FileManager.default
+        let documentsURL =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        var imageURL = documentsURL.appendingPathComponent("Health")
+        let imageName = "\(selectedDocument.name!).jpeg"
+        imageURL = imageURL.appendingPathComponent(imageName)
+        print(imageURL)
+        return imageURL
+    }
     
     func createPDF(formatter: UIViewPrintFormatter, filename: String) -> String {
         // 2. Assign print formatter to UIPrintPageRenderer

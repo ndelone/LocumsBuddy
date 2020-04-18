@@ -80,6 +80,7 @@ class ViewController: UIViewController {
                     //Create base directories
                     createNewDirectory(stateName: "State Licenses", parentDirectoryString: "")
                     createNewDirectory(stateName: "National Licenses", parentDirectoryString: "")
+                    createNewDirectory(stateName:"Health",parentDirectoryString: "")
                     
                     //Nationan License Fulfillment
                     for license in nationalLicenses {

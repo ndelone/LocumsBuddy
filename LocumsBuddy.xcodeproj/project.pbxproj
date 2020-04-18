@@ -21,10 +21,14 @@
 		6D4AB76F2449084500DCEB14 /* Employer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB76E2449084500DCEB14 /* Employer.swift */; };
 		6D4AB773244917C800DCEB14 /* SwipeCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB772244917C800DCEB14 /* SwipeCellController.swift */; };
 		6D4AB77624492DE400DCEB14 /* EmployerDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB77524492DE400DCEB14 /* EmployerDetailTableViewController.swift */; };
+		6D4AB778244A0C0E00DCEB14 /* HealthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB777244A0C0E00DCEB14 /* HealthTableViewController.swift */; };
+		6D4AB77B244A171B00DCEB14 /* HealthDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB77A244A171B00DCEB14 /* HealthDocument.swift */; };
+		6D591524244A276400A9DA01 /* HealthDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D591523244A276400A9DA01 /* HealthDetailTableViewController.swift */; };
+		6D591526244A27BD00A9DA01 /* PhotoViewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */; };
 		6D66B27D243CBE83001B09FB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B27C243CBE83001B09FB /* State.swift */; };
 		6D66B27F243CBEE0001B09FB /* LicenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */; };
 		6DB99890243B72F300506516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9988F243B72F300506516 /* AppDelegate.swift */; };
-		6DB99894243B72F300506516 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB99893243B72F300506516 /* ViewController.swift */; };
+		6DB99894243B72F300506516 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB99893243B72F300506516 /* InitialViewController.swift */; };
 		6DB99897243B72F300506516 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DB99895243B72F300506516 /* Main.storyboard */; };
 		6DB99899243B72FB00506516 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DB99898243B72FB00506516 /* Assets.xcassets */; };
 		6DB9989C243B72FB00506516 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DB9989A243B72FB00506516 /* LaunchScreen.storyboard */; };
@@ -49,11 +53,15 @@
 		6D4AB76E2449084500DCEB14 /* Employer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employer.swift; sourceTree = "<group>"; };
 		6D4AB772244917C800DCEB14 /* SwipeCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCellController.swift; sourceTree = "<group>"; };
 		6D4AB77524492DE400DCEB14 /* EmployerDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerDetailTableViewController.swift; sourceTree = "<group>"; };
+		6D4AB777244A0C0E00DCEB14 /* HealthTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTableViewController.swift; sourceTree = "<group>"; };
+		6D4AB77A244A171B00DCEB14 /* HealthDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDocument.swift; sourceTree = "<group>"; };
+		6D591523244A276400A9DA01 /* HealthDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDetailTableViewController.swift; sourceTree = "<group>"; };
+		6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewClass.swift; sourceTree = "<group>"; };
 		6D66B27C243CBE83001B09FB /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseRepository.swift; sourceTree = "<group>"; };
 		6DB9988C243B72F300506516 /* LocumsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocumsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB9988F243B72F300506516 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6DB99893243B72F300506516 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6DB99893243B72F300506516 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		6DB99896243B72F300506516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6DB99898243B72FB00506516 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DB9989B243B72FB00506516 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,8 +99,10 @@
 		6D4AB770244912DE00DCEB14 /* Credential management */ = {
 			isa = PBXGroup;
 			children = (
+				6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */,
 				6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */,
 				6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */,
+				6D4AB779244A0C1B00DCEB14 /* Health */,
 				6D4AB77424492DCB00DCEB14 /* Employer */,
 			);
 			path = "Credential management";
@@ -116,10 +126,20 @@
 			path = Employer;
 			sourceTree = "<group>";
 		};
+		6D4AB779244A0C1B00DCEB14 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				6D4AB777244A0C0E00DCEB14 /* HealthTableViewController.swift */,
+				6D591523244A276400A9DA01 /* HealthDetailTableViewController.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 		6D66B27B243CBE44001B09FB /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				6D66B27C243CBE83001B09FB /* State.swift */,
+				6D4AB77A244A171B00DCEB14 /* HealthDocument.swift */,
 				6D4AB76E2449084500DCEB14 /* Employer.swift */,
 				6D01B805243CE6CB0044CE10 /* License.swift */,
 				6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */,
@@ -151,7 +171,7 @@
 				6D66B27B243CBE44001B09FB /* Data */,
 				6DB9988F243B72F300506516 /* AppDelegate.swift */,
 				6DB998AB243B91A200506516 /* LocalNotificationManager.swift */,
-				6DB99893243B72F300506516 /* ViewController.swift */,
+				6DB99893243B72F300506516 /* InitialViewController.swift */,
 				6DB998A3243B8A4400506516 /* CVViewController.swift */,
 				6DB998A7243B8BC800506516 /* SideMenuViewController.swift */,
 				6DB99895243B72F300506516 /* Main.storyboard */,
@@ -301,9 +321,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4AB77B244A171B00DCEB14 /* HealthDocument.swift in Sources */,
 				6DB998AC243B91A200506516 /* LocalNotificationManager.swift in Sources */,
+				6D591526244A27BD00A9DA01 /* PhotoViewClass.swift in Sources */,
 				6D4AB77624492DE400DCEB14 /* EmployerDetailTableViewController.swift in Sources */,
-				6DB99894243B72F300506516 /* ViewController.swift in Sources */,
+				6DB99894243B72F300506516 /* InitialViewController.swift in Sources */,
+				6D4AB778244A0C0E00DCEB14 /* HealthTableViewController.swift in Sources */,
 				6DB998A4243B8A4400506516 /* CVViewController.swift in Sources */,
 				6DB998AE243BD62700506516 /* StateTableViewController.swift in Sources */,
 				6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */,
@@ -313,6 +336,7 @@
 				6D66B27F243CBEE0001B09FB /* LicenseRepository.swift in Sources */,
 				6D01B808243CE8BC0044CE10 /* LicenseViewController.swift in Sources */,
 				6D4828BB243E51D70021BEDB /* SetAlarmSideMenuTableController.swift in Sources */,
+				6D591524244A276400A9DA01 /* HealthDetailTableViewController.swift in Sources */,
 				6D4AB76F2449084500DCEB14 /* Employer.swift in Sources */,
 				6D66B27D243CBE83001B09FB /* State.swift in Sources */,
 				6DB998A8243B8BC800506516 /* SideMenuViewController.swift in Sources */,
