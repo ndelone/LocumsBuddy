@@ -26,14 +26,15 @@ class LicenseViewController: PhotoViewClass{
     var selectedState : State?
     var licenseType : String = ""
     var displayType = ""
-    var licenseToPass : License?
+    //var oldLicense : License?
+    var oldLicense : License?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         licenseTextField.delegate = self
         loadInformation()
-        super.imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(licenseToPass!.savingPath)
-        super.imageName = "\(licenseToPass!.licenseType).jpeg"
+        super.imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(oldLicense!.savingPath)
+        super.imageName = "\(oldLicense!.licenseType).jpeg"
         super.loadImageView = imageView
     }
 
@@ -120,19 +121,19 @@ class LicenseViewController: PhotoViewClass{
             try realm.write{
                 switch displayType {
                 case "State":
-                    guard let  oldLicense = selectedState?.licenseList.filter("licenseType == %@", licenseType).first else {return}
+                    guard let  formerLicense = selectedState?.licenseList.filter("licenseType == %@", licenseType).first else {return}
                     newLicense.savingPath = "State Licenses/\(selectedState!.name)"
                     selectedState?.licenseList.append(newLicense)
-                    realm.delete(oldLicense)
-                    licenseToPass = newLicense
+                    realm.delete(formerLicense)
+                    oldLicense = newLicense
                 case "National":
                     print("National arc")
-                    guard let  oldLicense = realm.objects(LicenseRepository.self).first?.nationalLicenseList.filter("licenseType == %@", licenseType).first else {return}
-                    print(oldLicense.licenseType)
+                    guard let  formerLicense = realm.objects(LicenseRepository.self).first?.nationalLicenseList.filter("licenseType == %@", licenseType).first else {return}
+                    print(formerLicense.licenseType)
                     newLicense.savingPath = "National Licenses/\(licenseType)"
                     realm.objects(LicenseRepository.self).first?.nationalLicenseList.append(newLicense)
-                    realm.delete(oldLicense)
-                    licenseToPass = newLicense
+                    realm.delete(formerLicense)
+                    oldLicense = newLicense
                 default:
                     print("error saving license")
                 }
@@ -145,7 +146,6 @@ class LicenseViewController: PhotoViewClass{
     //MARK: - Loading initial information
     
     func loadInformation(){
-        var oldLicense : License?
         switch displayType {
         case "State":
             oldLicense = selectedState?.licenseList.filter("licenseType == %@", licenseType).first
@@ -159,7 +159,7 @@ class LicenseViewController: PhotoViewClass{
         issueDatePicker.date = oldLicense?.issueDate ?? Date()
         expirationDatePicker.date = oldLicense?.expirationDate ?? Date()
         alarmLabel.text = oldLicense?.alarmText
-        licenseToPass = oldLicense
+       // oldLicense = oldLicense
     }
     
     

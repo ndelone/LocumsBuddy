@@ -25,7 +25,7 @@ class RemindersTableViewController: UITableViewController {
     
     let realm = try! Realm()
     var resultsList : Results<License>?
-    
+    var selectedLicense : License?
     
     
     
@@ -34,16 +34,24 @@ class RemindersTableViewController: UITableViewController {
         loadExpiringLicenses()
     }
     
-    // MARK: - Table view data source
     
-    //    override func numberOfSections(in tableView: UITableView) -> Int {
-    //        // #warning Incomplete implementation, return the number of sections
-    //        return 1
-    //    }
-    
+    //MARK: - TableView Methods
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return resultsList?.count ?? 1
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedLicense = resultsList?[indexPath.row]
+        performSegue(withIdentifier: "licenseSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! LicenseViewController
+        print("The licesnse to pass is \(selectedLicense)")
+        destinationVC.oldLicense = selectedLicense
+        destinationVC.displayType = ((selectedLicense?.licenseType == "DEA" || selectedLicense?.licenseType == "State") ? "State" : "National")
     }
     
     
@@ -59,12 +67,26 @@ class RemindersTableViewController: UITableViewController {
             let dateFormatterPrint = DateFormatter()
             dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
             let expirationDateString = dateFormatterPrint.string(from: expirationDate)
-            cell.textLabel?.text = "\(parentString)\(licenseTypeString) expires on \(expirationDateString)"
+            //Format strings differently based on time until expiration
+            
+            cell.textLabel?.font = UIFont(name: "Courier", size: 20)
+            if let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: expirationDate).day {
+                switch diffInDays {
+                case -10000 ... 0:
+                    cell.textLabel?.text = "\(parentString)\(licenseTypeString) EXPIRED on \(expirationDateString)"
+                    cell.textLabel?.textColor = UIColor.systemRed
+                    cell.textLabel?.font = UIFont(name: "Courier-Bold", size: 20)
+                case 1 ... 31:
+                    cell.textLabel?.text = "\(parentString)\(licenseTypeString) expires on \(expirationDateString)"
+                    cell.textLabel?.textColor = UIColor.systemYellow
+                default:
+                    cell.textLabel?.text = "\(parentString)\(licenseTypeString) expires on \(expirationDateString)"
+                    cell.textLabel?.textColor = UIColor.systemGreen
+                }
+            }
         } else {
             cell.textLabel?.text = "No scheduled reminders"
         }
-                //cell.accessoryType = (currentLicense?.isReminderSet == true ?  .detailDisclosureButton : .none) // Commenting out accessorry for cell...don't have a use for it now
-        
         return cell
     }
     
@@ -73,7 +95,7 @@ class RemindersTableViewController: UITableViewController {
         print("Retrieving license list")
         //Set Today's date
         let today = Calendar.current.startOfDay(for: Date())
-        resultsList = realm.objects(License.self).filter("expirationDate >= %@", today).sorted(byKeyPath: "expirationDate", ascending: true)
+        resultsList = realm.objects(License.self).filter("expirationDate != nil").sorted(byKeyPath: "expirationDate", ascending: true)
         tableView.reloadData()
     }
 }

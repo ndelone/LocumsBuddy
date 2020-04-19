@@ -126,8 +126,10 @@
 		6D4AB771244912F400DCEB14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6DB99893243B72F300506516 /* InitialViewController.swift */,
 				6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */,
 				6D4AB772244917C800DCEB14 /* SwipeCellController.swift */,
+				6DBAD0B6244CDCFE00123B77 /* ExpirationList */,
 				6D3A6DC9244BAD170086C520 /* Licenses */,
 				6D4AB770244912DE00DCEB14 /* Credential management */,
 			);
@@ -197,19 +199,25 @@
 			children = (
 				6D66B27B243CBE44001B09FB /* Data */,
 				6DB9988F243B72F300506516 /* AppDelegate.swift */,
-				6DB998AB243B91A200506516 /* LocalNotificationManager.swift */,
-				6DB99893243B72F300506516 /* InitialViewController.swift */,
 				6DB998A3243B8A4400506516 /* CVViewController.swift */,
+				6DB998AB243B91A200506516 /* LocalNotificationManager.swift */,
 				6DB99895243B72F300506516 /* Main.storyboard */,
 				6DB998A7243B8BC800506516 /* SideMenuViewController.swift */,
 				6D4AB771244912F400DCEB14 /* Controller */,
-				6D4828BE243FEBD20021BEDB /* ViewRemindersTableViewController.swift */,
 				6DB99898243B72FB00506516 /* Assets.xcassets */,
 				6DB998A9243B8FAE00506516 /* NothingHere.pdf */,
 				6DB9989A243B72FB00506516 /* LaunchScreen.storyboard */,
 				6DB9989D243B72FB00506516 /* Info.plist */,
 			);
 			path = LocumsBuddy;
+			sourceTree = "<group>";
+		};
+		6DBAD0B6244CDCFE00123B77 /* ExpirationList */ = {
+			isa = PBXGroup;
+			children = (
+				6D4828BE243FEBD20021BEDB /* ViewRemindersTableViewController.swift */,
+			);
+			path = ExpirationList;
 			sourceTree = "<group>";
 		};
 		AFBF01645AFC8B46F97DFE26 /* Pods */ = {

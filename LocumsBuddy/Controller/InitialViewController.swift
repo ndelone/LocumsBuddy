@@ -13,6 +13,7 @@ import RealmSwift
 class ViewController: UIViewController {
     let notificationManager = LocalNotificationManager()
     
+    @IBOutlet weak var expirationBadgeImageView: UIImageView!
     @IBOutlet weak var documentListButtonOutlet: UIButton!
     @IBOutlet weak var cvButtonOutlet: UIButton!
     @IBOutlet weak var expirationListButtonOutlet: UIButton!
@@ -36,11 +37,14 @@ class ViewController: UIViewController {
         addShadows(stateButtonOutlet)
         addShadows(documentListButtonOutlet)
         initializingFunction()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        expirationBadgeImageView.isHidden = !areLicensesExpiringSoon()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -129,5 +133,16 @@ class ViewController: UIViewController {
             button.layer.shadowOpacity = 1.0
     }
     
+    func areLicensesExpiringSoon() -> Bool {
+        //var dateComponent = DateComponents(day: 31)
+        let oneMonthLaterDate = Calendar.current.date(byAdding: DateComponents(day: 31), to: Calendar.current.startOfDay(for: Date()))
+        let resultsList = realm.objects(License.self).filter("expirationDate <= %@", oneMonthLaterDate).sorted(byKeyPath: "expirationDate", ascending: true)
+        switch resultsList.count {
+        case 0:
+            return false
+        default:
+            return true
+        }
+    }
 }
 
