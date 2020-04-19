@@ -42,6 +42,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         documentString += iterateNationalList()
         documentString += iterateEmployerList()
         documentString += iterateHealthList()
+        documentString += iterateCMEList()
         //Generate HTML file
         makeHtml(stringHTML: documentString)
         //Save as PDF
@@ -49,7 +50,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         
         self.makeWebView()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0){
             self.activityIndicator.stopAnimating()
             if let document = PDFDocument(url: self.defaultPath) {
                 // Center document on gray background
@@ -149,6 +150,20 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
     }
     
     
+    func iterateCMEList() -> String{
+        var cmeString = "<h1>CME</h1>"
+        guard let cmeList = realm.objects(LicenseRepository.self).first?.cmeList else { return "" }
+        for cme in cmeList{
+            let imageURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("CME/\(cme.name).jpeg")
+            print(imageURL)
+            cmeString += "<p>CME Name: \(cme.name)<br />Comments: \(cme.comment)<br />Issue date: \(formatDate(cme.issueDate ?? Date()))<br />Credits: \(cme.creditAmount) \(cme.creditType) credits."
+            if (FileManager.default.fileExists(atPath: imageURL.path)) {
+                cmeString += "<p><img src=\"\(imageURL)\" width=\"360\" height=\"240\"></p>"
+            }
+        }
+        return cmeString
+    }
+    
     func formatDate(_ date : Date) -> String {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
@@ -216,7 +231,7 @@ extension DocumentListViewController: WKNavigationDelegate {
         let fileManager = FileManager.default
         let documentsURL =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let imageURL = documentsURL.appendingPathComponent(savingPathString)
-        let imageName = selectedLicense.licenseType + " Photo"
+        let imageName = "\(selectedLicense.licenseType).jpeg" //selectedLicense.licenseType + " Photo"
         let imagePath = imageURL.appendingPathComponent(imageName)
         return imagePath
     }
@@ -227,7 +242,6 @@ extension DocumentListViewController: WKNavigationDelegate {
         var imageURL = documentsURL.appendingPathComponent("Health")
         let imageName = "\(selectedDocument.name!).jpeg"
         imageURL = imageURL.appendingPathComponent(imageName)
-        print(imageURL)
         return imageURL
     }
     

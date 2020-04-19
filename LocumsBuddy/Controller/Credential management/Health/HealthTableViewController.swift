@@ -12,7 +12,7 @@ import SwipeCellKit
 
 class HealthTableViewController: SwipeCellController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        generateAddAlert()
+        super.showAlert(title: "Add a health document", message: "Enter a unique name", placeHolder: "i.e. PPD 2020")
     }
     var selectedItem : HealthDocument?
     
@@ -45,50 +45,39 @@ class HealthTableViewController: SwipeCellController {
     }
     
     //MARK: - Add Button Pressed/Generate alert
+
     
-    func generateAddAlert(){
-        let alert = UIAlertController(title: "Add a health document", message: "", preferredStyle: .alert)
-        var textField = UITextField()
-        alert.addTextField { (alertTextField) in
-            textField = alertTextField
-            alertTextField.placeholder = "Name of document"
-        }
-        let okay = UIAlertAction(title: "Add", style: .default) { (okay) in
-            //Add Employer
-            print(textField.text!)
-            if textField.text != "" {
-                self.addNewDocument(textField.text!)
-                self.dismiss(animated: true, completion: nil)
-                self.tableView.reloadData()
+    @objc override func textChanged(_ sender:UITextField) {
+        if sender.text! != "" {
+            print("This many objects share same name: \(healthList?.filter("name ==[cd] %@", sender.text!).count)")
+            if ((healthList?.filter("name ==[cd] %@", sender.text!).count) ?? 0 == 0) {
+                self.actionToEnable?.isEnabled = true
+            } else {
+                self.actionToEnable?.isEnabled = false
             }
-            else {
-                alert.message = "Please enter a name"
-            }
+        } else {
+            self.actionToEnable?.isEnabled = true
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        alert.addAction(cancel)
-        alert.addAction(okay)
-        present(alert, animated: true, completion: nil)
     }
     
     
-    func addNewDocument(_ documentName : String){
+    override func addNewItem(_ name: String) {
         do {
             try! realm.write {
                 let newDocument = HealthDocument()
-                newDocument.name = documentName
+                newDocument.name = name
                 healthList?.append(newDocument)
             }
         } catch {
-            print("Failed to add employer")
+            print("Failed to add health document")
         }
+        tableView.reloadData()
     }
+
     
     override func updateModel(at indexPath: IndexPath) {
         //Delete employer in realm
-        print("Deleting employer in realm")
+        print("Deleting health item in realm")
         
         do {
             try! realm.write {

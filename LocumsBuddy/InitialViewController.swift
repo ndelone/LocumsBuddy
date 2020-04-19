@@ -81,7 +81,7 @@ class ViewController: UIViewController {
                     createNewDirectory(stateName: "State Licenses", parentDirectoryString: "")
                     createNewDirectory(stateName: "National Licenses", parentDirectoryString: "")
                     createNewDirectory(stateName:"Health",parentDirectoryString: "")
-                    
+                    createNewDirectory(stateName:"CME",parentDirectoryString: "")
                     //Nationan License Fulfillment
                     for license in nationalLicenses {
                         let newNationalLicense = License()

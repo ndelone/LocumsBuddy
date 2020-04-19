@@ -13,4 +13,5 @@ class LicenseRepository : Object {
     let nationalLicenseList = List<License>()
     let employerList = List<Employer>()
     let healthList = List<HealthDocument>()
+    let cmeList = List<CME>()
 }

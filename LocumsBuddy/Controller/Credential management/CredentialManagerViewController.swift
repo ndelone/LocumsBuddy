@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CredentialManagerViewController: UIViewController {
 
-    
+    let realm = try! Realm()
     @IBAction func employerButtonPressed(_ sender: UIButton) {
     
     }
@@ -19,6 +20,7 @@ class CredentialManagerViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
     
 
     /*

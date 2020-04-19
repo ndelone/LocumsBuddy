@@ -25,7 +25,7 @@ class HealthDetailTableViewController: PhotoViewClass {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected row \(indexPath.row)")
-        if indexPath.row == 2 {
+        if indexPath.row == 3 {
             super.saveButtonPressedDone()
         }
         tableView.deselectRow(at: indexPath, animated: true)

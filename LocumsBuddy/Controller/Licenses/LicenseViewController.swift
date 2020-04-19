@@ -10,17 +10,17 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-class LicenseViewController: UITableViewController{
+class LicenseViewController: PhotoViewClass{
     
     
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var savedLabel: UILabel!
     let manager = LocalNotificationManager()
     @IBOutlet weak var alarmLabel: UILabel!
     @IBOutlet weak var issueDatePicker: UIDatePicker!
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     @IBOutlet weak var licenseTextField: UITextField!
-    //let alarmDictionary = [0:"None", 1 : "One day before", 7: "One week before", 14: "Two weeks before", 30:"One month before"]
     let alarmDictionary = [ "None" : 0,"One day before" : 1, "One week before" : 7, "Two weeks before" : 14, "One month before" : 30]
     let realm = try! Realm()
     var selectedState : State?
@@ -31,8 +31,10 @@ class LicenseViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         licenseTextField.delegate = self
-
-        //loadInformation()
+        loadInformation()
+        super.imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(licenseToPass!.savingPath)
+        super.imageName = "\(licenseToPass!.licenseType).jpeg"
+        super.loadImageView = imageView
     }
 
 
@@ -41,26 +43,13 @@ class LicenseViewController: UITableViewController{
         super.touchesBegan(touches, with: event)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        loadInformation()
-        
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You pressed row \(indexPath.row)")
+        if indexPath.row == 4 {
+            super.saveButtonPressedDone()
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "photoSegue":
-            print("Trying to photoSegue")
-            let destinationVC = segue.destination as! PhotoViewController
-            destinationVC.selectedLicense = licenseToPass
-        default:
-            print("Default segue")
-        }
-    }
-    
     
     //MARK: - Save Button
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
