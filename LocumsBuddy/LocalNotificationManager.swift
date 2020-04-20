@@ -58,6 +58,15 @@ class LocalNotificationManager {
         notifications = [(Notification(id: id, title: title, dateTime: dateTime))]
     }
     
+    func makeIdString(selectedLicense: License?) -> String {
+        let licenseName = selectedLicense?.name
+        let licenseType = selectedLicense?.licenseType
+        let stateName = selectedLicense?.parentCategory.first?.name
+        let idString = "\(licenseType!)-\(licenseName!)-\(stateName!)"
+        
+        return idString
+    }
+    
     func scheduleNotifications() -> Void {
         for notification in notifications {
             let content = UNMutableNotificationContent()

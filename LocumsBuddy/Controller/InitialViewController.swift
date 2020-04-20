@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var cvButtonOutlet: UIButton!
     @IBOutlet weak var expirationListButtonOutlet: UIButton!
     @IBOutlet weak var nationalButtonOutlet: UIButton!
+    @IBOutlet weak var credentialManagerButtonOutlet: UIButton!
     @IBOutlet weak var stateButtonOutlet: UIButton!
     @IBAction func listNotificationsButtonPressed(_ sender: UIButton) {
         notificationManager.listScheduledNotifications()
@@ -31,11 +32,12 @@ class ViewController: UIViewController {
             print("I need to push CV")
             performSegue(withIdentifier: "cvSegue", sender: self)
         }
-            addShadows(nationalButtonOutlet)
-            addShadows(cvButtonOutlet)
+        addShadows(nationalButtonOutlet)
+        addShadows(cvButtonOutlet)
         addShadows(expirationListButtonOutlet)
         addShadows(stateButtonOutlet)
         addShadows(documentListButtonOutlet)
+        addShadows(credentialManagerButtonOutlet)
         initializingFunction()
         
         
@@ -46,7 +48,7 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         expirationBadgeImageView.isHidden = !areLicensesExpiringSoon()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -68,13 +70,15 @@ class ViewController: UIViewController {
                         let savingPath =  "State Licenses/\(state)"
                         //Adding in default DEA/Medical licenses
                         let newMedicalLicense = License()
-                        newMedicalLicense.licenseType = "Medical"
+                        newMedicalLicense.name = "Medical"
+                        newMedicalLicense.licenseType = "State"
                         newMedicalLicense.savingPath = savingPath
                         newState.licenseList.append(newMedicalLicense)
                         
                         
                         let newDEALicense = License()
-                        newDEALicense.licenseType = "DEA"
+                        newDEALicense.name = "DEA"
+                        newDEALicense.licenseType = "State"
                         newDEALicense.savingPath = savingPath
                         newState.licenseList.append(newDEALicense)
                         
@@ -86,15 +90,21 @@ class ViewController: UIViewController {
                     createNewDirectory(stateName: "National Licenses", parentDirectoryString: "")
                     createNewDirectory(stateName:"Health",parentDirectoryString: "")
                     createNewDirectory(stateName:"CME",parentDirectoryString: "")
-                    //Nationan License Fulfillment
+                    //National License Fulfillment
+                    
+                    let nationalState = State()
+                    nationalState.name = "National"
+                    nationalState.shouldAppearInPicker = false
                     for license in nationalLicenses {
                         let newNationalLicense = License()
                         let savingPath = "National Licenses/\(license)"
-                        newNationalLicense.licenseType = license
+                        newNationalLicense.name = license
+                        newNationalLicense.licenseType = "National"
                         newNationalLicense.savingPath = savingPath
-                        newLicenseArray.nationalLicenseList.append(newNationalLicense)
+                        nationalState.licenseList.append(newNationalLicense)
                         createNewDirectory(stateName: "\(license)", parentDirectoryString: "National Licenses/")
                     }
+                    newLicenseArray.stateChoiceList.append(nationalState)
                     
                     realm.add(newLicenseArray)
                     print("New License Array initialized")
@@ -124,13 +134,21 @@ class ViewController: UIViewController {
             NSLog("Unable to create directory \(error.debugDescription)")
         }
     }
-
+    
     
     func addShadows(_ button : UIButton){
-            button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowOffset = CGSize(width: 5, height: 5)
-            button.layer.shadowRadius = 5
-            button.layer.shadowOpacity = 1.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 5, height: 5)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 1.0
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "nationalLicenseSegue"{
+            let destinationVC = segue.destination as! LicenseTableViewController
+            destinationVC.selectedState = realm.objects(State.self).filter("name == %@","National").first
+        }
+        
     }
     
     func areLicensesExpiringSoon() -> Bool {

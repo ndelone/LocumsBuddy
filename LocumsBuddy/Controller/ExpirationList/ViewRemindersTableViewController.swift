@@ -31,6 +31,9 @@ class RemindersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         loadExpiringLicenses()
     }
     
@@ -49,9 +52,9 @@ class RemindersTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! LicenseViewController
-        print("The licesnse to pass is \(selectedLicense)")
-        destinationVC.oldLicense = selectedLicense
-        destinationVC.displayType = ((selectedLicense?.licenseType == "DEA" || selectedLicense?.licenseType == "State") ? "State" : "National")
+        print("The license to pass is \(selectedLicense)")
+        destinationVC.selectedLicense = selectedLicense
+
     }
     
     
@@ -62,8 +65,8 @@ class RemindersTableViewController: UITableViewController {
         // Configure the cell...
         let currentLicense = resultsList?[indexPath.row]
         var parentString = (currentLicense?.parentCategory.first?.name) ?? ""
-        parentString += (parentString != "" ? " " : "" )
-        if let expirationDate = currentLicense!.expirationDate, let licenseTypeString = currentLicense?.licenseType {
+        parentString = (parentString == "National" ? "" : "\(parentString) " )
+        if let expirationDate = currentLicense!.expirationDate, let licenseNameString = currentLicense?.name {
             let dateFormatterPrint = DateFormatter()
             dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
             let expirationDateString = dateFormatterPrint.string(from: expirationDate)
@@ -73,14 +76,14 @@ class RemindersTableViewController: UITableViewController {
             if let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: expirationDate).day {
                 switch diffInDays {
                 case -10000 ... 0:
-                    cell.textLabel?.text = "\(parentString)\(licenseTypeString) EXPIRED on \(expirationDateString)"
+                    cell.textLabel?.text = "\(parentString)\(licenseNameString) license EXPIRED on \(expirationDateString)"
                     cell.textLabel?.textColor = UIColor.systemRed
                     cell.textLabel?.font = UIFont(name: "Courier-Bold", size: 20)
                 case 1 ... 31:
-                    cell.textLabel?.text = "\(parentString)\(licenseTypeString) expires on \(expirationDateString)"
+                    cell.textLabel?.text = "\(parentString)\(licenseNameString) license expires on \(expirationDateString)"
                     cell.textLabel?.textColor = UIColor.systemYellow
                 default:
-                    cell.textLabel?.text = "\(parentString)\(licenseTypeString) expires on \(expirationDateString)"
+                    cell.textLabel?.text = "\(parentString)\(licenseNameString) license expires on \(expirationDateString)"
                     cell.textLabel?.textColor = UIColor.systemGreen
                 }
             }

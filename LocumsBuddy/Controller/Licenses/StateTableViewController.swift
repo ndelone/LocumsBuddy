@@ -26,7 +26,7 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateModel()
+        loadStates()
         
     }
     
@@ -89,14 +89,15 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     //MARK: - Load States
     
-    func updateModel() {
-        if let statesForTable = realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("shouldAppearInPicker == false").sorted(byKeyPath: "name", ascending: true){
+    func loadStates() {
+        if let statesForTable = realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("shouldAppearInPicker == false && name != %@","National").sorted(byKeyPath: "name", ascending: true){
             realmStatesForTable = statesForTable.count > 0 ? statesForTable : nil
         }
         
         if let statesForPicker = realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("shouldAppearInPicker == true").sorted(byKeyPath: "name", ascending: true){
             realmStatesForPicker = statesForPicker.count > 0 ? statesForPicker : nil
         }
+        
         tableView.reloadData()
         print("Set realmstate object successfully")
         
@@ -118,7 +119,7 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
                 self?.selectedState = self?.realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("name == %@", stateName).first
                 self?.createNewDirectory(stateName: stateName, parentDirectoryString: "")
                 self?.switchShouldAppearValue()
-                self?.updateModel()
+                self?.loadStates()
             }
         }
     }
@@ -165,7 +166,7 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
                 for license in state.licenseList {
                     if license.isReminderSet == true {
                         let manager = LocalNotificationManager()
-                        let idString =    "State " + license.licenseType + " " + (state.name)
+                        let idString =    "State " + license.name + " " + (state.name)
                         manager.deleteNotification(id: idString)
                     }
                     //clear the associated license data

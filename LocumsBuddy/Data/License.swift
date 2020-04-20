@@ -17,6 +17,7 @@ class License : Object {
     @objc dynamic var isReminderSet: Bool = false
     @objc dynamic var alarmText = "None"
     @objc dynamic var savingPath = ""
+    @objc dynamic var name = ""
     
     var parentCategory = LinkingObjects(fromType: State.self, property: "licenseList")
 }

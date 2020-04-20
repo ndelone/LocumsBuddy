@@ -16,25 +16,22 @@ class LicenseViewController: PhotoViewClass{
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var savedLabel: UILabel!
-    let manager = LocalNotificationManager()
     @IBOutlet weak var alarmLabel: UILabel!
     @IBOutlet weak var issueDatePicker: UIDatePicker!
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     @IBOutlet weak var licenseTextField: UITextField!
+    let manager = LocalNotificationManager()
     let alarmDictionary = [ "None" : 0,"One day before" : 1, "One week before" : 7, "Two weeks before" : 14, "One month before" : 30]
     let realm = try! Realm()
-    var selectedState : State?
-    var licenseType : String = ""
-    var displayType = ""
-    //var oldLicense : License?
-    var oldLicense : License?
+    var selectedLicense : License?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         licenseTextField.delegate = self
         loadInformation()
-        super.imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(oldLicense!.savingPath)
-        super.imageName = "\(oldLicense!.licenseType).jpeg"
+        //print(selectedLicense)
+        super.imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(selectedLicense!.savingPath)
+        super.imageName = "\(selectedLicense!.name).jpeg"
         super.loadImageView = imageView
     }
 
@@ -113,30 +110,17 @@ class LicenseViewController: PhotoViewClass{
         newLicense.licenseNumber = licenseTextField.text
         newLicense.issueDate = issueDatePicker.date
         newLicense.expirationDate = expirationDatePicker.date
-        newLicense.licenseType = licenseType
+        newLicense.licenseType = selectedLicense!.licenseType
         newLicense.isReminderSet = (alarmLabel.text == "None") ? false : true
         newLicense.alarmText = alarmLabel.text ?? "None"
+        newLicense.name = selectedLicense!.name
+        newLicense.savingPath = selectedLicense!.savingPath
         
         do {
             try realm.write{
-                switch displayType {
-                case "State":
-                    guard let  formerLicense = selectedState?.licenseList.filter("licenseType == %@", licenseType).first else {return}
-                    newLicense.savingPath = "State Licenses/\(selectedState!.name)"
-                    selectedState?.licenseList.append(newLicense)
-                    realm.delete(formerLicense)
-                    oldLicense = newLicense
-                case "National":
-                    print("National arc")
-                    guard let  formerLicense = realm.objects(LicenseRepository.self).first?.nationalLicenseList.filter("licenseType == %@", licenseType).first else {return}
-                    print(formerLicense.licenseType)
-                    newLicense.savingPath = "National Licenses/\(licenseType)"
-                    realm.objects(LicenseRepository.self).first?.nationalLicenseList.append(newLicense)
-                    realm.delete(formerLicense)
-                    oldLicense = newLicense
-                default:
-                    print("error saving license")
-                }
+                selectedLicense?.parentCategory.first?.licenseList.append(newLicense)
+                realm.delete(selectedLicense!)
+                selectedLicense = newLicense
             }
         } catch {
             print("Error in writing new state license")
@@ -146,27 +130,17 @@ class LicenseViewController: PhotoViewClass{
     //MARK: - Loading initial information
     
     func loadInformation(){
-        switch displayType {
-        case "State":
-            oldLicense = selectedState?.licenseList.filter("licenseType == %@", licenseType).first
-        case "National":
-            oldLicense = realm.objects(LicenseRepository.self).first?.nationalLicenseList.filter("licenseType == %@", licenseType).first
-        default:
-            print("Error loading old information")
-        }
-        
-        licenseTextField.text = oldLicense?.licenseNumber
-        issueDatePicker.date = oldLicense?.issueDate ?? Date()
-        expirationDatePicker.date = oldLicense?.expirationDate ?? Date()
-        alarmLabel.text = oldLicense?.alarmText
-       // oldLicense = oldLicense
+        licenseTextField.text = selectedLicense?.licenseNumber
+        issueDatePicker.date = selectedLicense?.issueDate ?? Date()
+        expirationDatePicker.date = selectedLicense?.expirationDate ?? Date()
+        alarmLabel.text = selectedLicense?.alarmText
     }
     
     
     //MARK: - Set notification reminder
     
     func setNotification(days: Int) -> Void {
-        let idString =  displayType + " " + licenseType + " " + (selectedState?.name ?? "")
+        let idString =  manager.makeIdString(selectedLicense: selectedLicense)
         if days == 0 {
             manager.deleteNotification(id: idString)
             return
@@ -178,7 +152,7 @@ class LicenseViewController: PhotoViewClass{
             let futureDate = Calendar.current.date(byAdding: dateComponent, to: expirationDate)
             print(idString)
             if let reminderDate = futureDate {
-                manager.addNotification(title: "\(selectedState?.name ?? "") \(licenseType) License will expire soon.", dateTime: manager.currentDateComponents(reminderDate: reminderDate), id : idString)
+                manager.addNotification(title: "\(selectedLicense?.parentCategory.first?.name ?? "") \(selectedLicense?.name) License will expire soon.", dateTime: manager.currentDateComponents(reminderDate: reminderDate), id : idString)
             }
             manager.schedule()
         }

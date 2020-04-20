@@ -14,7 +14,7 @@ class CMEDetailsTableViewController: PhotoViewClass {
     let realm = try! Realm()
     @IBOutlet weak var issueDatePicker: UIDatePicker!
     @IBOutlet weak var creditTypePicker: UIPickerView!
-    let creditTypeData = ["AMA PRA 1", "AMA PRA 2"]
+    let creditTypeData = ["AMA PRA I", "AMA PRA II"]
     lazy var creditTypeDict = [creditTypeData[0]: 1, creditTypeData[1]: 2]
     @IBOutlet weak var creditAmountPicker: UIPickerView!
     let creditAmountPickerData = (1...20).map { $0 }
@@ -48,8 +48,8 @@ class CMEDetailsTableViewController: PhotoViewClass {
 
     func loadData(){
         issueDatePicker.date = selectedCME?.issueDate ?? Date()
-        creditAmountPicker.selectRow(selectedCME?.creditAmount ?? 0, inComponent: 0, animated: false)
-        creditTypePicker.selectRow(creditTypeDict[selectedCME?.creditType ?? "AMA PR 1"] ?? 0, inComponent: 0, animated: false)
+        creditAmountPicker.selectRow(((selectedCME?.creditAmount ?? 1) - 1), inComponent: 0, animated: false)
+        creditTypePicker.selectRow(creditTypeDict[selectedCME?.creditType ?? "AMA PRA I"] ?? 0, inComponent: 0, animated: false)
         commentTextField.text = selectedCME?.comment
     }
 

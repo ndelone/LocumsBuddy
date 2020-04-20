@@ -77,7 +77,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
     
     
     func generateLists() -> Results<State>{
-        let stateList = realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("shouldAppearInPicker == %@",false).sorted(byKeyPath: "name", ascending: true)
+        let stateList = realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("name != %@ &&  shouldAppearInPicker == %@","National",false).sorted(byKeyPath: "name", ascending: true)
         print(stateList)
         return stateList!
     }
@@ -101,7 +101,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
             let expirationDateString = dateFormatterPrint.string(from: expirationDate)
             let issueDateString = dateFormatterPrint.string(from: issueDate)
             //if so, add to a html string
-            string += "<h2>\(stateName) \(license.licenseType) License</h2>License number: \(licenseNumber)<br />License issued: \(issueDateString)<br />License expires: \(expirationDateString)<br />"
+            string += "<h2>\(stateName) \(license.name) License</h2>License number: \(licenseNumber)<br />License issued: \(issueDateString)<br />License expires: \(expirationDateString)<br />"
             let imagePath = getLicenseImagePath(selectedLicense: license)
             print(imagePath)
             if (FileManager.default.fileExists(atPath: imagePath.path)) {
@@ -115,11 +115,11 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
     
     func iterateNationalList() -> String{
         var nationalLicenseString = "<h1>National Licenses</h1>"
-        if let nationalList = realm.objects(LicenseRepository.self).first?.nationalLicenseList{
-            for license in nationalList {
-                nationalLicenseString += licenseStringAddition(license: license, stateName: "")
-            }
+        guard let nationalLicenses = (realm.objects(State.self).filter("name == %@","National").first?.licenseList) else {return nationalLicenseString}
+        for license in nationalLicenses {
+            nationalLicenseString += licenseStringAddition(license: license, stateName: "")
         }
+        
         return nationalLicenseString
     }
     
@@ -227,13 +227,14 @@ extension DocumentListViewController: WKNavigationDelegate {
     }
     
     func getLicenseImagePath(selectedLicense : License) -> URL{
-        let savingPathString = selectedLicense.savingPath
-        let fileManager = FileManager.default
-        let documentsURL =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let imageURL = documentsURL.appendingPathComponent(savingPathString)
-        let imageName = "\(selectedLicense.licenseType).jpeg" //selectedLicense.licenseType + " Photo"
-        let imagePath = imageURL.appendingPathComponent(imageName)
-        return imagePath
+ //       let savingPathString = selectedLicense.savingPath
+//        let fileManager = FileManager.default
+//        let documentsURL =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let imageurl = documentsURL.appendingPathComponent(savingPathString)
+//        let imageName = "\(selectedLicense.name).jpeg"
+//        let imagePath = imageurl.appendingPathComponent(imageName)
+        let imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(selectedLicense.savingPath)/\(selectedLicense.name).jpeg")
+        return imageURL
     }
     
     func getHealthDocumentPath(selectedDocument: HealthDocument) -> URL{
