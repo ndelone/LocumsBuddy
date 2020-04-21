@@ -26,7 +26,6 @@ class EmployerDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadEmployer()
-
         
         //Draw a border on textview
         addressTextView!.layer.borderWidth = 1
@@ -70,5 +69,12 @@ class EmployerDetailTableViewController: UITableViewController {
         positionTextField.text = selectedEmployer?.position
         startDatePicker.date = selectedEmployer?.startDate ?? Date()
         commentsTextField.text = selectedEmployer?.comment
+    }
+}
+
+extension EmployerDetailTableViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }

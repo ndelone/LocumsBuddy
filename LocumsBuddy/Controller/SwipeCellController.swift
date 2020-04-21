@@ -84,25 +84,11 @@ class SwipeCellController : UITableViewController, SwipeTableViewCellDelegate, U
     }
 
     @objc func textChanged(_ sender:UITextField) {
-//        if sender.text! != "" {
-//            print("This many objects share same name: \(cmeList?.filter("name ==[cd] %@", sender.text!).count)")
-//            if ((cmeList?.filter("name ==[cd] %@", sender.text!).count) ?? 0 == 0) {
-//                self.actionToEnable?.isEnabled = true
-//            } else {
-//                self.actionToEnable?.isEnabled = false
-//            }
-//        } else {
-//            self.actionToEnable?.isEnabled = true
-//        }
+
     }
 
     func addNewItem(_ name: String){
         //Add new item
     }
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, didEndEditingItemAt indexPath: IndexPath?, for orientation: SwipeActionsOrientation) {
-//        print("Hey")
-//    }
 }
 

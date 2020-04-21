@@ -13,6 +13,7 @@ class HealthDocument : Object {
     @objc dynamic var name : String?
     @objc dynamic var comment: String?
     @objc dynamic var expirationDate : Date?
+    @objc dynamic var notificationReminder: String?
 
     var parentCategory = LinkingObjects(fromType: LicenseRepository.self, property: "healthList")
 }

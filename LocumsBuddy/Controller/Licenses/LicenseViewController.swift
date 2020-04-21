@@ -19,6 +19,12 @@ class LicenseViewController: PhotoViewClass{
     @IBOutlet weak var alarmLabel: UILabel!
     @IBOutlet weak var issueDatePicker: UIDatePicker!
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
+    @IBAction func issueDateChanged(_ sender: UIDatePicker) {
+        expirationDatePicker.minimumDate = sender.date
+    }
+    @IBAction func expirationDateChanged(_ sender: UIDatePicker) {
+        issueDatePicker.maximumDate = sender.date
+    }
     @IBOutlet weak var licenseTextField: UITextField!
     let manager = LocalNotificationManager()
     let alarmDictionary = [ "None" : 0,"One day before" : 1, "One week before" : 7, "Two weeks before" : 14, "One month before" : 30]
@@ -111,7 +117,7 @@ class LicenseViewController: PhotoViewClass{
         newLicense.issueDate = issueDatePicker.date
         newLicense.expirationDate = expirationDatePicker.date
         newLicense.licenseType = selectedLicense!.licenseType
-        newLicense.isReminderSet = (alarmLabel.text == "None") ? false : true
+        newLicense.showReminder = true
         newLicense.alarmText = alarmLabel.text ?? "None"
         newLicense.name = selectedLicense!.name
         newLicense.savingPath = selectedLicense!.savingPath
@@ -140,7 +146,7 @@ class LicenseViewController: PhotoViewClass{
     //MARK: - Set notification reminder
     
     func setNotification(days: Int) -> Void {
-        let idString =  manager.makeIdString(selectedLicense: selectedLicense)
+        let idString =  manager.makeLicenseIDString(selectedLicense: selectedLicense)
         if days == 0 {
             manager.deleteNotification(id: idString)
             return

@@ -154,11 +154,13 @@ class ViewController: UIViewController {
     func areLicensesExpiringSoon() -> Bool {
         //var dateComponent = DateComponents(day: 31)
         let oneMonthLaterDate = Calendar.current.date(byAdding: DateComponents(day: 31), to: Calendar.current.startOfDay(for: Date()))
-        let resultsList = realm.objects(License.self).filter("expirationDate <= %@", oneMonthLaterDate).sorted(byKeyPath: "expirationDate", ascending: true)
+        let resultsList = realm.objects(License.self).filter("expirationDate <= %@ && showReminder == true", oneMonthLaterDate).sorted(byKeyPath: "expirationDate", ascending: true)
         switch resultsList.count {
         case 0:
             return false
         default:
+            let alreadyExpiredList = resultsList.filter("expirationDate <= %@", Date())
+            expirationBadgeImageView.tintColor = (alreadyExpiredList.count == 0 ? UIColor.yellow : UIColor.red)
             return true
         }
     }

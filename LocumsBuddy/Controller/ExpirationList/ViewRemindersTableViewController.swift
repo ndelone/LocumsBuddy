@@ -9,7 +9,7 @@ import SwipeCellKit
 import UIKit
 import RealmSwift
 
-class RemindersTableViewController: UITableViewController {
+class RemindersTableViewController: SwipeCellController {
     
     /*
      Class outline
@@ -54,12 +54,27 @@ class RemindersTableViewController: UITableViewController {
         let destinationVC = segue.destination as! LicenseViewController
         print("The license to pass is \(selectedLicense)")
         destinationVC.selectedLicense = selectedLicense
-
     }
     
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        let deleteAction = SwipeAction(style: .destructive, title: "Hide reminder") { action, indexPath in
+            // handle action by updating model with deletion
+
+            self.updateModel(at: indexPath)
+        }
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+
+        return [deleteAction]
+    }
+
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         // Configure the cell...
@@ -98,7 +113,19 @@ class RemindersTableViewController: UITableViewController {
         print("Retrieving license list")
         //Set Today's date
         let today = Calendar.current.startOfDay(for: Date())
-        resultsList = realm.objects(License.self).filter("expirationDate != nil").sorted(byKeyPath: "expirationDate", ascending: true)
+        resultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        do {
+            try realm.write {
+                resultsList?[indexPath.row].showReminder = false
+            }
+        } catch {
+            print("Couldn't change reminder")
+        }
+        
+                resultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
     }
 }

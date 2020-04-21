@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class LicenseTableViewController: UITableViewController {
-    
+    let K = Constants()
     let realm = try! Realm()
     var selectedState : State?
     var selectedLicense : License?
@@ -36,6 +36,8 @@ class LicenseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = licenseList?[indexPath.row].name ?? "No licenses added yet"
+        cell.textLabel?.font = K.textFont
+        cell.textLabel?.textColor = K.textColor
         
         return cell
     }

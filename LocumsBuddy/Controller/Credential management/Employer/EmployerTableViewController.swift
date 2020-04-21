@@ -15,7 +15,7 @@ class EmployerTableViewController: SwipeCellController {
         generateAddAlert()
     }
     var selectedEmployer : Employer?
-    
+    let K = Constants()
     let realm = try! Realm()
     lazy var employerList = realm.objects(LicenseRepository.self).first?.employerList
     override func viewDidLoad() {
@@ -41,6 +41,8 @@ class EmployerTableViewController: SwipeCellController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = employerList?[indexPath.row].name
+        cell.textLabel?.textColor = K.textColor
+        cell.textLabel?.font = K.textFont
         return cell
     }
     

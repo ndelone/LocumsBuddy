@@ -17,7 +17,8 @@ class CMETableViewController: SwipeCellController {
 //         generateAddAlert()
     }
     var cmeList : Results<CME>?
-    //lazy var cmeList = realm.objects(LicenseRepository.self).first?.cmeList
+    let K = Constants()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCME()
@@ -47,6 +48,8 @@ class CMETableViewController: SwipeCellController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = cmeList?[indexPath.row].name ?? "Nothing here yet. Hit (+) to get started"
+        cell.textLabel?.textColor = K.textColor
+        cell.textLabel?.font = K.textFont
         return cell
     }
     
@@ -58,36 +61,6 @@ class CMETableViewController: SwipeCellController {
     }
     
     //MARK: - Add Button Pressed/Generate alert
-
-//    weak var actionToEnable : UIAlertAction?
-//
-//    func showAlert()
-//    {
-//        let alert = UIAlertController(title: "Add CME", message: "Enter a unique name", preferredStyle: .alert)
-//        let placeholderStr =  "i.e. AMA 2019"
-//
-//        alert.addTextField(configurationHandler: {(textField: UITextField) in
-//            textField.placeholder = placeholderStr
-//            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
-//        })
-//
-//        let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (_) -> Void in
-//
-//        })
-//
-//        let action = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (_) -> Void in
-//            let textfield = alert.textFields!.first!
-//            self.addNewCME(textfield.text!)
-//            //Do what you want with the textfield!
-//        })
-//
-//        alert.addAction(cancel)
-//        alert.addAction(action)
-//
-//        self.actionToEnable = action
-//        action.isEnabled = false
-//        self.present(alert, animated: true, completion: nil)
-//    }
 
     @objc override func textChanged(_ sender:UITextField) {
         if sender.text! != "" {

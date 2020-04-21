@@ -13,7 +13,7 @@ import McPicker
 
 class StateTableViewController: UITableViewController, SwipeTableViewCellDelegate {
     
-    
+    let K = Constants()
     let realm = try! Realm()
     var realmStatesForTable : Results<State>?
     var selectedState : State?
@@ -27,7 +27,6 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         loadStates()
-        
     }
     
     //MARK: - Tableview Data methods
@@ -37,6 +36,8 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
         cell.delegate = self
         cell.textLabel?.text = realmStatesForTable?[indexPath.row].name ?? ("Add a state to get started")
         cell.textLabel?.text == "Add a state to get started" ? (cell.isUserInteractionEnabled = false) : (cell.isUserInteractionEnabled = true)
+        cell.textLabel?.textColor = K.textColor
+        cell.textLabel?.font = K.textFont
         return cell
     }
     
@@ -164,13 +165,13 @@ class StateTableViewController: UITableViewController, SwipeTableViewCellDelegat
                 //remove notification if exists
                 //Check if any license has reminder set
                 for license in state.licenseList {
-                    if license.isReminderSet == true {
+                    if license.alarmText != "None" {
                         let manager = LocalNotificationManager()
-                        let idString =    "State " + license.name + " " + (state.name)
+                        let idString =  manager.makeLicenseIDString(selectedLicense: license)
                         manager.deleteNotification(id: idString)
                     }
                     //clear the associated license data
-                    license.isReminderSet = false
+                    license.showReminder = true
                     license.licenseNumber = ""
                     license.expirationDate = nil
                     license.issueDate = nil

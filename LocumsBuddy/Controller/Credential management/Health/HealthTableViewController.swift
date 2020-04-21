@@ -15,7 +15,7 @@ class HealthTableViewController: SwipeCellController {
         super.showAlert(title: "Add a health document", message: "Enter a unique name", placeHolder: "i.e. PPD 2020")
     }
     var selectedItem : HealthDocument?
-    
+    let K = Constants()
     let realm = try! Realm()
     lazy var healthList = realm.objects(LicenseRepository.self).first?.healthList
     override func viewDidLoad() {
@@ -41,6 +41,8 @@ class HealthTableViewController: SwipeCellController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = healthList?[indexPath.row].name
+        cell.textLabel?.textColor = K.textColor
+        cell.textLabel?.font = K.textFont
         return cell
     }
     

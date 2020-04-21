@@ -14,7 +14,7 @@ class License : Object {
     @objc dynamic var licenseType : String = ""
     @objc dynamic var issueDate: Date?
     @objc dynamic var expirationDate: Date?
-    @objc dynamic var isReminderSet: Bool = false
+    @objc dynamic var showReminder: Bool = true
     @objc dynamic var alarmText = "None"
     @objc dynamic var savingPath = ""
     @objc dynamic var name = ""

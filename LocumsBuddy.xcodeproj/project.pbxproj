@@ -22,6 +22,7 @@
 		6D4AB77624492DE400DCEB14 /* EmployerDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB77524492DE400DCEB14 /* EmployerDetailTableViewController.swift */; };
 		6D4AB778244A0C0E00DCEB14 /* HealthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB777244A0C0E00DCEB14 /* HealthTableViewController.swift */; };
 		6D4AB77B244A171B00DCEB14 /* HealthDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB77A244A171B00DCEB14 /* HealthDocument.swift */; };
+		6D507262244DF71000ADAD67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D507261244DF71000ADAD67 /* Constants.swift */; };
 		6D591524244A276400A9DA01 /* HealthDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D591523244A276400A9DA01 /* HealthDetailTableViewController.swift */; };
 		6D591526244A27BD00A9DA01 /* PhotoViewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */; };
 		6D591528244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D591527244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		6D4AB77524492DE400DCEB14 /* EmployerDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerDetailTableViewController.swift; sourceTree = "<group>"; };
 		6D4AB777244A0C0E00DCEB14 /* HealthTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTableViewController.swift; sourceTree = "<group>"; };
 		6D4AB77A244A171B00DCEB14 /* HealthDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDocument.swift; sourceTree = "<group>"; };
+		6D507261244DF71000ADAD67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6D591523244A276400A9DA01 /* HealthDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDetailTableViewController.swift; sourceTree = "<group>"; };
 		6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewClass.swift; sourceTree = "<group>"; };
 		6D591527244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMEDetailsTableViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		6D3A6DC9244BAD170086C520 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
+				6D507261244DF71000ADAD67 /* Constants.swift */,
 				6DB998AD243BD62700506516 /* StateTableViewController.swift */,
 				6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */,
 				6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */,
@@ -377,6 +380,7 @@
 				6D3F4161244799BA00BCF99B /* EmployerTableViewController.swift in Sources */,
 				6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */,
 				6D01B806243CE6CB0044CE10 /* License.swift in Sources */,
+				6D507262244DF71000ADAD67 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

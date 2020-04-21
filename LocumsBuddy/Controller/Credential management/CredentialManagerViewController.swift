@@ -10,27 +10,26 @@ import UIKit
 import RealmSwift
 
 class CredentialManagerViewController: UIViewController {
-
-    let realm = try! Realm()
+    @IBOutlet weak var healthOutlet: UIButton!
+    @IBOutlet weak var employerOutlet: UIButton!
+    @IBOutlet weak var cmeOutlet: UIButton!
     @IBAction func employerButtonPressed(_ sender: UIButton) {
     
     }
+    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addShadows(healthOutlet)
+        addShadows(employerOutlet)
+        addShadows(cmeOutlet)
         // Do any additional setup after loading the view.
     }
     
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    func addShadows(_ button : UIButton){
+         button.layer.shadowColor = UIColor.black.cgColor
+         button.layer.shadowOffset = CGSize(width: 5, height: 5)
+         button.layer.shadowRadius = 5
+         button.layer.shadowOpacity = 1.0
+     }
 }

@@ -58,7 +58,13 @@ class LocalNotificationManager {
         notifications = [(Notification(id: id, title: title, dateTime: dateTime))]
     }
     
-    func makeIdString(selectedLicense: License?) -> String {
+    func makeHealthIDString(selectedHealth: HealthDocument?) -> String{
+        guard let name = selectedHealth?.name else {return ""}
+        let healthString = "Health-\(name)"
+        return healthString
+    }
+    
+    func makeLicenseIDString(selectedLicense: License?) -> String {
         let licenseName = selectedLicense?.name
         let licenseType = selectedLicense?.licenseType
         let stateName = selectedLicense?.parentCategory.first?.name
