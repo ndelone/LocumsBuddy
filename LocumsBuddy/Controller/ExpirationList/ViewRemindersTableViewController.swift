@@ -140,9 +140,7 @@ class RemindersTableViewController: SwipeCellController {
     
     func loadExpirationLists(){
         //Load license list
-        print("Retrieving license list")
-        //Set Today's date
-        let today = Calendar.current.startOfDay(for: Date())
+        
         licenseResultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
         healthResultsList = realm.objects(HealthDocument.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
         tableView.reloadData()

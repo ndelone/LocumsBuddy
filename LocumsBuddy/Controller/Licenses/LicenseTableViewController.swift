@@ -44,8 +44,6 @@ class LicenseTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedLicense = licenseList?[indexPath.row]
-        print(indexPath.row)
-        print(selectedLicense?.name)
         performSegue(withIdentifier: "licenseDataSegue", sender: self)
     }
     
@@ -53,7 +51,6 @@ class LicenseTableViewController: UITableViewController {
         let destinationVC = segue.destination as! LicenseViewController
         destinationVC.selectedLicense = selectedLicense
         destinationVC.title = selectedLicense?.name
-        print("Preparing for segue for license \(selectedLicense)")
     }
     
     func loadLicenses(){

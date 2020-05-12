@@ -80,7 +80,6 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
     
     func generateLists() -> Results<State>{
         let stateList = realm.objects(LicenseRepository.self).first?.stateChoiceList.filter("name != %@ &&  shouldAppearInPicker == %@","National",false).sorted(byKeyPath: "name", ascending: true)
-        print(stateList)
         return stateList!
     }
     
@@ -274,7 +273,7 @@ extension DocumentListViewController: WKNavigationDelegate {
         UIGraphicsEndPDFContext()
         
         // 5. Save PDF file
-        var documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let defaultPath = (documentURL?.appendingPathComponent("\(filename).pdf").path)!
         
         DispatchQueue.main.async {
@@ -295,7 +294,6 @@ extension DocumentListViewController: MFMailComposeViewControllerDelegate {
     
     func sendEmail(){
         print(defaultPath.path)
-        let manager = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.setSubject("CV attached for exclusive site presentation")

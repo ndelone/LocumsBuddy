@@ -34,8 +34,7 @@ class CVViewController: UIViewController, PDFDocumentDelegate {
             loadDocument(documentURL: documentURL)
         } else {
             //No CV Selected, displays default message.
-            if let documentURL = Bundle.main.url(forResource: "NothingHere", withExtension: "pdf") {
-                
+            if Bundle.main.url(forResource: "NothingHere", withExtension: "pdf") != nil {
                 
                 // Create Attachment
                 let imageAttachment = NSTextAttachment()

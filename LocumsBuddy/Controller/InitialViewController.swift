@@ -158,7 +158,7 @@ class ViewController: UIViewController {
     func areLicensesExpiringSoon() -> Bool {
         let realm = try! Realm()
         //var dateComponent = DateComponents(day: 31)
-        let oneMonthLaterDate = Calendar.current.date(byAdding: DateComponents(day: 31), to: Calendar.current.startOfDay(for: Date()))
+        guard let oneMonthLaterDate = Calendar.current.date(byAdding: DateComponents(day: 31), to: Calendar.current.startOfDay(for: Date())) else {return false}
         let resultsList = realm.objects(License.self).filter("expirationDate <= %@ && showReminder == true", oneMonthLaterDate).sorted(byKeyPath: "expirationDate", ascending: true)
         switch resultsList.count {
         case 0:

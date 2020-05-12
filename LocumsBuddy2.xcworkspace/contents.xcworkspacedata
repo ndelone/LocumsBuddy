@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/nd/Documents/LocumsBuddy2/LocumsBuddy/Controller/Credential management/CME/CMETableViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:/Users/nd/Documents/LocumsBuddy2/LocumsBuddy.xcodeproj">
    </FileRef>
    <FileRef

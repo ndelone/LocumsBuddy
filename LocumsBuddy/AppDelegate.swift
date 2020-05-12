@@ -76,17 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
         Realm.Configuration.defaultConfiguration = config
-        let realm = try! Realm()
+        _ = try! Realm()
         
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
-        do{
-            _ = try Realm()
-        } catch {
-            print("Error in realming")
-        }
     }
-    
-    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

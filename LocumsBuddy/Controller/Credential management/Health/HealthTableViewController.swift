@@ -51,7 +51,6 @@ class HealthTableViewController: SwipeCellController {
     
     @objc override func textChanged(_ sender:UITextField) {
         if sender.text! != "" {
-            print("This many objects share same name: \(healthList?.filter("name ==[cd] %@", sender.text!).count)")
             if ((healthList?.filter("name ==[cd] %@", sender.text!).count) ?? 0 == 0) {
                 self.actionToEnable?.isEnabled = true
             } else {
@@ -65,7 +64,7 @@ class HealthTableViewController: SwipeCellController {
     
     override func addNewItem(_ name: String) {
         do {
-            try! realm.write {
+            try realm.write {
                 let newDocument = HealthDocument()
                 newDocument.name = name
                 healthList?.append(newDocument)
@@ -87,7 +86,7 @@ class HealthTableViewController: SwipeCellController {
             let notificationID = notificationManager.makeHealthIDString(selectedHealth: healthList?[indexPath.row])
             notificationManager.deleteNotification(id: notificationID)
             
-            try! realm.write {
+            try realm.write {
                 if let documentToDelete = healthList?[indexPath.row] {
                     realm.delete(documentToDelete)
                 }

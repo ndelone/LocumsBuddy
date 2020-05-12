@@ -78,7 +78,7 @@ class EmployerTableViewController: SwipeCellController {
     
     func addNewEmployer(_ employerName : String){
         do {
-            try! realm.write {
+            try realm.write {
                 let newEmployer = Employer()
                 newEmployer.name = employerName
                 employerList?.append(newEmployer)
@@ -93,7 +93,7 @@ class EmployerTableViewController: SwipeCellController {
         print("Deleting employer in realm")
         
         do {
-            try! realm.write {
+            try realm.write {
                 if let employerToDelete = employerList?[indexPath.row] {
                     realm.delete(employerToDelete)
                 }

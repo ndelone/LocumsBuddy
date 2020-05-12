@@ -398,7 +398,9 @@
                                                 <constraint firstItem="eFH-Vi-MKH" firstAttribute="leading" secondItem="vUZ-Ao-917" secondAttribute="leadingMargin" id="6MT-0E-mUM"/>
                                                 <constraint firstItem="cC2-g0-48u" firstAttribute="centerY" secondItem="vUZ-Ao-917" secondAttribute="centerY" id="LER-6E-8ZE"/>
                                                 <constraint firstItem="eFH-Vi-MKH" firstAttribute="centerY" secondItem="vUZ-Ao-917" secondAttribute="centerY" id="b8k-K5-3Dk"/>
+                                                <constraint firstAttribute="trailing" secondItem="cC2-g0-48u" secondAttribute="trailing" constant="20" id="tBC-Qp-pgN"/>
                                                 <constraint firstAttribute="trailing" secondItem="cC2-g0-48u" secondAttribute="trailing" constant="20" id="wCt-Yx-KRH"/>
+                                                <constraint firstItem="cC2-g0-48u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eFH-Vi-MKH" secondAttribute="trailing" constant="8" symbolic="YES" id="za0-UW-d8h"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -468,6 +470,7 @@
                                             <constraints>
                                                 <constraint firstItem="FFl-Zh-W5u" firstAttribute="centerY" secondItem="lO2-O9-quL" secondAttribute="centerY" id="3zj-dB-Z4i"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ade-nG-VfF" secondAttribute="trailing" constant="20" id="QLG-1i-gyU"/>
+                                                <constraint firstItem="Ade-nG-VfF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FFl-Zh-W5u" secondAttribute="trailing" constant="8" symbolic="YES" id="QqO-e8-bpw"/>
                                                 <constraint firstItem="FFl-Zh-W5u" firstAttribute="leading" secondItem="lO2-O9-quL" secondAttribute="leadingMargin" id="Ypm-16-AF6"/>
                                                 <constraint firstItem="Ade-nG-VfF" firstAttribute="centerY" secondItem="lO2-O9-quL" secondAttribute="centerY" id="coJ-ae-7kD"/>
                                             </constraints>
@@ -501,6 +504,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="t72-GF-Cmm" secondAttribute="trailing" constant="20" id="Gfn-X1-hmG"/>
+                                                <constraint firstItem="t72-GF-Cmm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Oux-9L-pl8" secondAttribute="trailing" constant="8" symbolic="YES" id="MKE-BA-zS5"/>
                                                 <constraint firstItem="Oux-9L-pl8" firstAttribute="leading" secondItem="SQr-2f-okA" secondAttribute="leadingMargin" id="Oid-ff-EAS"/>
                                                 <constraint firstItem="t72-GF-Cmm" firstAttribute="centerY" secondItem="SQr-2f-okA" secondAttribute="centerY" id="Qs7-nh-HPe"/>
                                                 <constraint firstItem="Oux-9L-pl8" firstAttribute="centerY" secondItem="SQr-2f-okA" secondAttribute="centerY" id="X6x-K8-unj"/>
@@ -538,6 +542,7 @@
                                             <constraints>
                                                 <constraint firstItem="kmi-RD-Zb6" firstAttribute="leading" secondItem="P3j-Y0-Ep4" secondAttribute="leadingMargin" id="620-Tf-HgG"/>
                                                 <constraint firstItem="kmi-RD-Zb6" firstAttribute="centerY" secondItem="P3j-Y0-Ep4" secondAttribute="centerY" id="8bK-w4-6Vb"/>
+                                                <constraint firstItem="ZaB-Ve-fRj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kmi-RD-Zb6" secondAttribute="trailing" constant="8" symbolic="YES" id="SD2-6P-ff2"/>
                                                 <constraint firstItem="ZaB-Ve-fRj" firstAttribute="centerY" secondItem="P3j-Y0-Ep4" secondAttribute="centerY" id="TYl-AK-r9R"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZaB-Ve-fRj" secondAttribute="trailing" constant="20" id="bzD-8e-mcp"/>
                                             </constraints>
@@ -604,6 +609,7 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="DqO-SL-LA0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mK0-Fh-qd9" secondAttribute="trailing" constant="8" symbolic="YES" id="2O2-IZ-IP2"/>
                                                 <constraint firstItem="mK0-Fh-qd9" firstAttribute="leading" secondItem="VhD-8m-dws" secondAttribute="leadingMargin" id="7tc-0y-xWe"/>
                                                 <constraint firstAttribute="trailing" secondItem="DqO-SL-LA0" secondAttribute="trailing" constant="20" id="IgU-vt-nhY"/>
                                                 <constraint firstItem="DqO-SL-LA0" firstAttribute="centerY" secondItem="VhD-8m-dws" secondAttribute="centerY" id="Ko0-Mg-2dn"/>
@@ -1700,53 +1706,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaq-Aw-dLD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1241" y="-297"/>
-        </scene>
-        <!--Expiration alert Sidemenu-->
-        <scene sceneID="aOR-VZ-4Jy">
-            <objects>
-                <tableViewController title="Expiration alert" id="9Ze-5e-Jc3" userLabel="Expiration alert Sidemenu" customClass="AlarmSideMenuTableController" customModule="LocumsBuddy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lIV-hI-Ize">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="FPB-op-BZ4">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FPB-op-BZ4" id="4Yf-Gi-PsR">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="9Ze-5e-Jc3" id="8Kc-0q-g67"/>
-                            <outlet property="delegate" destination="9Ze-5e-Jc3" id="g0S-U9-jfg"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Expiration reminder" id="SqI-go-Xvz"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kaa-GK-Fd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3004" y="655"/>
-        </scene>
-        <!--Root VC-->
-        <scene sceneID="5sE-n0-OBG">
-            <objects>
-                <navigationController title="Root VC" id="eV1-eB-2q4" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tDo-2C-FXl"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cMz-i2-vWW">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="9Ze-5e-Jc3" kind="relationship" relationship="rootViewController" id="2mr-Fg-tRy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0fq-xR-aSG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2087" y="655"/>
         </scene>
     </scenes>
     <resources>
