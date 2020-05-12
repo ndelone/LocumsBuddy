@@ -24,36 +24,70 @@ class RemindersTableViewController: SwipeCellController {
     
     
     let realm = try! Realm()
-    var resultsList : Results<License>?
+    var licenseResultsList : Results<License>?
+    var healthResultsList : Results<HealthDocument>?
     var selectedLicense : License?
+    var selectedHealthDocument : HealthDocument?
+    let sectionNames = ["Licenses","Health Documents"]
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadExpiringLicenses()
+        loadExpirationLists()
     }
     
     
     //MARK: - TableView Methods
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionNames.count
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionNames[section]
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return resultsList?.count ?? 1
+        switch section {
+        case 0:
+            return licenseResultsList?.count ?? 1
+        default:
+            return healthResultsList?.count ?? 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedLicense = resultsList?[indexPath.row]
-        performSegue(withIdentifier: "licenseSegue", sender: self)
+        switch indexPath.section {
+        case 0:
+            selectedLicense = licenseResultsList?[indexPath.row]
+            performSegue(withIdentifier: "licenseSegue", sender: self)
+        case 1:
+            selectedHealthDocument = healthResultsList?[indexPath.row]
+            performSegue(withIdentifier: "healthSegue", sender: self)
+        default:
+            print("Default table selection")
+        }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! LicenseViewController
-        print("The license to pass is \(selectedLicense)")
-        destinationVC.selectedLicense = selectedLicense
+        switch segue.identifier {
+        case "licenseSegue":
+            let destinationVC = segue.destination as! LicenseViewController
+            destinationVC.selectedLicense = selectedLicense
+        case "healthSegue":
+            let destinationVC = segue.destination as! HealthDetailTableViewController
+            destinationVC.selectedDocument = selectedHealthDocument
+        default:
+            print("Default preparation for segue")
+        }
+
     }
     
     
@@ -61,71 +95,97 @@ class RemindersTableViewController: SwipeCellController {
         guard orientation == .right else { return nil }
         let deleteAction = SwipeAction(style: .destructive, title: "Hide reminder") { action, indexPath in
             // handle action by updating model with deletion
-
+            
             self.updateModel(at: indexPath)
         }
-
+        
         // customize the action appearance
         deleteAction.image = UIImage(named: "delete-icon")
-
+        
         return [deleteAction]
     }
-
+    
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        var cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell.textLabel?.font = UIFont(name: "Courier", size: 20)
         // Configure the cell...
-        let currentLicense = resultsList?[indexPath.row]
-        var parentString = (currentLicense?.parentCategory.first?.name) ?? ""
-        parentString = (parentString == "National" ? "" : "\(parentString) " )
-        if let expirationDate = currentLicense!.expirationDate, let licenseNameString = currentLicense?.name {
-            let dateFormatterPrint = DateFormatter()
-            dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
-            let expirationDateString = dateFormatterPrint.string(from: expirationDate)
-            //Format strings differently based on time until expiration
-            
-            cell.textLabel?.font = UIFont(name: "Courier", size: 20)
-            if let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: expirationDate).day {
-                switch diffInDays {
-                case -10000 ... 0:
-                    cell.textLabel?.text = "\(parentString)\(licenseNameString) license EXPIRED on \(expirationDateString)"
-                    cell.textLabel?.textColor = UIColor.systemRed
-                    cell.textLabel?.font = UIFont(name: "Courier-Bold", size: 20)
-                case 1 ... 31:
-                    cell.textLabel?.text = "\(parentString)\(licenseNameString) license expires on \(expirationDateString)"
-                    cell.textLabel?.textColor = UIColor.systemYellow
-                default:
-                    cell.textLabel?.text = "\(parentString)\(licenseNameString) license expires on \(expirationDateString)"
-                    cell.textLabel?.textColor = UIColor.systemGreen
-                }
+        switch (indexPath.section){
+        case 0:
+            let currentLicense = licenseResultsList?[indexPath.row]
+            var parentString = (currentLicense?.parentCategory.first?.name) ?? ""
+            parentString = (parentString == "National" ? "" : "\(parentString) " )
+            if let expirationDate = currentLicense!.expirationDate, let licenseNameString = currentLicense?.name {
+                let documentName = "\(parentString)\(licenseNameString) license"
+                cell = colorCodeCell(expirationDate: expirationDate, cell: cell, documentString: documentName)
+            } else {
+                cell.textLabel?.text = "No scheduled reminders"
             }
-        } else {
+        case 1:
+            let currentHealthDocument = healthResultsList?[indexPath.row]
+            if let expirationDate = currentHealthDocument?.expirationDate, let documentName = currentHealthDocument?.name{
+                cell = colorCodeCell(expirationDate: expirationDate, cell: cell, documentString: documentName)
+            } else {
+                cell.textLabel?.text = "No scheduled reminders"
+            }
+        default:
             cell.textLabel?.text = "No scheduled reminders"
         }
+        
         return cell
     }
     
-    func loadExpiringLicenses(){
+    func loadExpirationLists(){
         //Load license list
         print("Retrieving license list")
         //Set Today's date
         let today = Calendar.current.startOfDay(for: Date())
-        resultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
+        licenseResultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
+        healthResultsList = realm.objects(HealthDocument.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
         tableView.reloadData()
     }
     
     override func updateModel(at indexPath: IndexPath) {
         do {
             try realm.write {
-                resultsList?[indexPath.row].showReminder = false
+                switch indexPath.section {
+                case 0:
+                    licenseResultsList?[indexPath.row].showReminder = false
+                    licenseResultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
+                case 1:
+                    healthResultsList?[indexPath.row].showReminder = false
+                    healthResultsList = realm.objects(HealthDocument.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
+                default:
+                    print("Default updateModel in View Reminders")
+                }
             }
         } catch {
             print("Couldn't change reminder")
         }
-        
-                resultsList = realm.objects(License.self).filter("expirationDate != nil && showReminder == true").sorted(byKeyPath: "expirationDate", ascending: true)
+    }
+    
+    
+    func colorCodeCell(expirationDate: Date, cell: UITableViewCell, documentString: String) -> UITableViewCell {
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMMM dd, yyyy"
+        let expirationDateString = dateFormatterPrint.string(from: expirationDate)
+        if let diffInDays = Calendar.current.dateComponents([.day], from: Date(), to: expirationDate).day {
+            switch diffInDays {
+            case -10000 ... 0:
+                cell.textLabel?.text = "\(documentString) EXPIRED on \(expirationDateString)"
+                cell.textLabel?.textColor = UIColor.systemRed
+                cell.textLabel?.font = UIFont(name: "Courier-Bold", size: 20)
+            case 1 ... 31:
+                cell.textLabel?.text = "\(documentString) expires on \(expirationDateString)"
+                cell.textLabel?.textColor = UIColor.systemYellow
+            default:
+                cell.textLabel?.text = "\(documentString) expires on \(expirationDateString)"
+                cell.textLabel?.textColor = UIColor.systemGreen
+            }
+        }
+        return cell
     }
 }

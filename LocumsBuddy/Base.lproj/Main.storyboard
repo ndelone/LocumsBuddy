@@ -34,6 +34,7 @@
                     <navigationItem key="navigationItem" title="Upcoming expirations" id="dIZ-2N-fdH"/>
                     <connections>
                         <segue destination="aSc-PW-ElO" kind="show" identifier="licenseSegue" id="Fia-ar-7hI"/>
+                        <segue destination="tqg-6x-oWG" kind="show" identifier="healthSegue" id="Zij-k7-h34"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ATH-Sp-lnY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1137,6 +1138,9 @@
                                                         <constraint firstAttribute="height" constant="90" id="QFC-3g-KEL"/>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="SgE-5p-zqD"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="expirationPickerDidChange:" destination="tqg-6x-oWG" eventType="valueChanged" id="VDl-94-9Vt"/>
+                                                    </connections>
                                                 </datePicker>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qny-8t-ohB">
                                                     <rect key="frame" x="20" y="30" width="134" height="41"/>
@@ -1165,8 +1169,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyP-ZU-zbE">
-                                                    <rect key="frame" x="324" y="12" width="50" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyP-ZU-zbE">
+                                                    <rect key="frame" x="344" y="12" width="50" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="8eC-26-QTk"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="MTz-9R-8TY"/>
@@ -1188,7 +1192,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="tyP-ZU-zbE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T2x-av-NXB" secondAttribute="trailing" constant="8" symbolic="YES" id="Ado-eI-JeE"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="tyP-ZU-zbE" secondAttribute="trailing" constant="20" id="ZlB-Rg-nQr"/>
+                                                <constraint firstAttribute="trailing" secondItem="tyP-ZU-zbE" secondAttribute="trailing" constant="20" id="ZlB-Rg-nQr"/>
                                                 <constraint firstItem="tyP-ZU-zbE" firstAttribute="centerY" secondItem="GRz-px-i3d" secondAttribute="centerY" id="ghX-k0-c6M"/>
                                                 <constraint firstItem="T2x-av-NXB" firstAttribute="centerY" secondItem="GRz-px-i3d" secondAttribute="centerY" id="rhD-p4-vay"/>
                                                 <constraint firstItem="T2x-av-NXB" firstAttribute="leading" secondItem="GRz-px-i3d" secondAttribute="leadingMargin" id="sS1-9t-wgy"/>
@@ -1569,19 +1573,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpn-9a-hE8">
-                                                    <rect key="frame" x="20" y="17" width="200.33333333333334" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration reminder" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpn-9a-hE8">
+                                                    <rect key="frame" x="20" y="12" width="178.33333333333334" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="tZr-F7-tj3"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="7tE-TD-gbZ"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="TGD-QF-Uii"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8Z-Te-8gx">
-                                                    <rect key="frame" x="357" y="17" width="47" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8Z-Te-8gx">
+                                                    <rect key="frame" x="224" y="17" width="180" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="47" id="VDJ-iw-LJd"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="2SX-LC-A8Y"/>
                                                         <constraint firstAttribute="height" constant="30" id="Y1G-ga-Q5K"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -1592,14 +1597,11 @@
                                             <constraints>
                                                 <constraint firstItem="dpn-9a-hE8" firstAttribute="leading" secondItem="Xeu-rS-3wP" secondAttribute="leading" constant="20" id="P5A-R8-0Qe"/>
                                                 <constraint firstItem="q8Z-Te-8gx" firstAttribute="centerY" secondItem="Xeu-rS-3wP" secondAttribute="centerY" id="dZ0-Ku-KLV"/>
+                                                <constraint firstItem="q8Z-Te-8gx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dpn-9a-hE8" secondAttribute="trailing" constant="8" symbolic="YES" id="kQH-a8-XXH"/>
                                                 <constraint firstAttribute="trailing" secondItem="q8Z-Te-8gx" secondAttribute="trailing" constant="10" id="mJ5-Zy-LqK"/>
-                                                <constraint firstItem="q8Z-Te-8gx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dpn-9a-hE8" secondAttribute="trailing" constant="8" symbolic="YES" id="pao-8h-oxr"/>
                                                 <constraint firstItem="dpn-9a-hE8" firstAttribute="centerY" secondItem="Xeu-rS-3wP" secondAttribute="centerY" id="yzx-3W-Ghg"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="eV1-eB-2q4" kind="presentation" identifier="menuSegue" id="gqq-OT-ldT"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="339" id="nfm-jv-1Ad">
                                         <rect key="frame" x="0.0" y="336" width="414" height="339"/>
@@ -1653,13 +1655,7 @@
                             <outlet property="delegate" destination="aSc-PW-ElO" id="2a8-Nt-W4k"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="x1r-B3-udL">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Bhn-oJ-tXa">
-                            <connections>
-                                <action selector="saveButtonPressed:" destination="aSc-PW-ElO" id="78r-U0-g1N"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="x1r-B3-udL"/>
                     <connections>
                         <outlet property="alarmLabel" destination="q8Z-Te-8gx" id="8AN-ci-Jk5"/>
                         <outlet property="expirationDatePicker" destination="hO1-F0-H9F" id="ht8-pd-sB4"/>
@@ -1671,7 +1667,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcJ-95-YAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2085.5999999999999" y="-247.82608695652175"/>
+            <point key="canvasLocation" x="2085.507246376812" y="-248.4375"/>
         </scene>
         <!--PickAlicenseType-->
         <scene sceneID="5Jt-ca-Ft5">
@@ -1710,7 +1706,7 @@
             <objects>
                 <tableViewController title="Expiration alert" id="9Ze-5e-Jc3" userLabel="Expiration alert Sidemenu" customClass="AlarmSideMenuTableController" customModule="LocumsBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lIV-hI-Ize">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -1741,7 +1737,7 @@
                 <navigationController title="Root VC" id="eV1-eB-2q4" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="tDo-2C-FXl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cMz-i2-vWW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1771,5 +1767,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="iOp-tA-Syv"/>
         <segue reference="Fia-ar-7hI"/>
+        <segue reference="Zij-k7-h34"/>
     </inferredMetricsTieBreakers>
 </document>

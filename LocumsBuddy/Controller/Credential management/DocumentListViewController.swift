@@ -24,6 +24,8 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
     let documentURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first)!
     lazy var defaultPath = (documentURL.appendingPathComponent("CredentialingList.pdf"))
     let group = DispatchGroup()
+    let pictureWidth = 200
+    let pictureHeight = 200
     
     @IBAction func emailButtonPressed(_ sender: UIBarButtonItem) {
         sendEmail()
@@ -106,7 +108,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
             print(imagePath)
             if (FileManager.default.fileExists(atPath: imagePath.path)) {
                 print("file exists!")
-                string += "<p><img src=\"\(imagePath)\" width=\"360\" height=\"240\"></p>"
+                string += "<p><img src=\"\(imagePath)\" width=\"\(pictureWidth)\" height=\"\(pictureHeight)\"></p>"
             }
         }
         return string
@@ -140,10 +142,10 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
         for document in healthList{
             let imageURL = getHealthDocumentPath(selectedDocument: document)
             print(imageURL)
-            healthString += "<p>Document name: \(document.name!)<br />Comments: \(document.comment!)"
+            healthString += "<p>Document name: \(document.name)<br />Comments: \(document.comment!)"
             if (FileManager.default.fileExists(atPath: imageURL.path)) {
                 print("file exists!")
-                healthString += "<p><img src=\"\(imageURL)\" width=\"360\" height=\"240\"></p>"
+                healthString += "<p><img src=\"\(imageURL)\" width=\"\(pictureWidth)\" height=\"\(pictureHeight)\"></p>"
             }
         }
         return healthString
@@ -158,7 +160,7 @@ class DocumentListViewController: UIViewController, PDFDocumentDelegate {
             print(imageURL)
             cmeString += "<p>CME Name: \(cme.name)<br />Comments: \(cme.comment)<br />Issue date: \(formatDate(cme.issueDate ?? Date()))<br />Credits: \(cme.creditAmount) \(cme.creditType) credits."
             if (FileManager.default.fileExists(atPath: imageURL.path)) {
-                cmeString += "<p><img src=\"\(imageURL)\" width=\"360\" height=\"240\"></p>"
+                cmeString += "<p><img src=\"\(imageURL)\" width=\"\(pictureWidth)\" height=\"\(pictureHeight)\"></p>"
             }
         }
         return cmeString
@@ -241,7 +243,7 @@ extension DocumentListViewController: WKNavigationDelegate {
         let fileManager = FileManager.default
         let documentsURL =  fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         var imageURL = documentsURL.appendingPathComponent("Health")
-        let imageName = "\(selectedDocument.name!).jpeg"
+        let imageName = "\(selectedDocument.name).jpeg"
         imageURL = imageURL.appendingPathComponent(imageName)
         return imageURL
     }

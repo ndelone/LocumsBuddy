@@ -24,10 +24,16 @@ class LicenseViewController: PhotoViewClass{
     }
     @IBAction func expirationDateChanged(_ sender: UIDatePicker) {
         issueDatePicker.maximumDate = sender.date
+        inputValidation(alertTimeDays: 0)
     }
     @IBOutlet weak var licenseTextField: UITextField!
     let manager = LocalNotificationManager()
-    let alarmDictionary = [ "None" : 0,"One day before" : 1, "One week before" : 7, "Two weeks before" : 14, "One month before" : 30]
+    var alertTime: Int = 0 {
+        didSet{
+            alarmLabel.text = alertDict[alertTime]
+        }
+    }
+    let alertDict = [ 0 : "None", 1: "One day before", 7: "One week before", 14: "Two weeks before", 30: "One month before"]
     let realm = try! Realm()
     var selectedLicense : License?
     
@@ -40,8 +46,8 @@ class LicenseViewController: PhotoViewClass{
         super.imageName = "\(selectedLicense!.name).jpeg"
         super.loadImageView = imageView
     }
-
-
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
@@ -49,22 +55,28 @@ class LicenseViewController: PhotoViewClass{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You pressed row \(indexPath.row)")
+        if indexPath.row == 3 {
+            reminderAlert()
+            print(alertTime)
+        }
         if indexPath.row == 4 {
             super.saveButtonPressedDone()
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        saveLicense()
+    }
+    
     //MARK: - Save Button
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         
-        if inputPassesValidation() {
-            saveLicense()
-            if let days = alarmDictionary[alarmLabel.text!]{
-                setNotification(days: days)
-            }
-            displaySaveBanner()
-        }
+//        if inputPassesValidation(alertTimeDays: alertTime) {
+//            saveLicense()
+//            setNotification(days: alertTime)
+//            displaySaveBanner()
+//        }
         
     }
     //MARK: - Validate licenses input
@@ -75,39 +87,27 @@ class LicenseViewController: PhotoViewClass{
         present(alert, animated: true)
     }
     
-    func inputPassesValidation() -> Bool {
+    func inputValidation(alertTimeDays: Int) {
         //Check issue date is before today
-        if issueDatePicker.date <= Date() {
-            print("Issue date acceptable")
-            //Check that expiration date is after issue date
-            if expirationDatePicker.date>issueDatePicker.date {
-                print("Expiration date acceptable")
-                //Capture the alarm date
-                if alarmDictionary[alarmLabel.text!]! == 0 {
-                    return true
+        if alertTimeDays == 0 {
+            alertTime = 0
+            setNotification(days: alertTimeDays)
                 } else {
                     var dateComponent = DateComponents()
-                    dateComponent.day = alarmDictionary[alarmLabel.text!]! * -1
+                    dateComponent.day = alertTimeDays * -1
                     let reminderDate = Calendar.current.date(byAdding: dateComponent, to: Calendar.current.startOfDay(for: expirationDatePicker.date))
                     let today = Calendar.current.startOfDay(for: Date())
                     //Ensure alarm date is at least 2 days from current date
-                    guard let diffInDays = Calendar.current.dateComponents([.day], from: today, to: reminderDate!).day else {return false}
+                    guard let diffInDays = Calendar.current.dateComponents([.day], from: today, to: reminderDate!).day else {return}
                     print(diffInDays)
                     if diffInDays >= 2 {
                         print("Passed validation")
-                        return true
+                        alertTime = alertTimeDays
+                        setNotification(days: alertTimeDays)
                     } else {
                         validationAlert(alarmText: "Reminder needs to be at least 2 days from today.")
                     }
-                }
-            } else{
-                validationAlert(alarmText: "Expiration date needs to be after issue date!")
-            }
-        } else {
-            validationAlert(alarmText: "Issue date can't be in the future!")
         }
-        
-        return false
     }
     
     func saveLicense(){
@@ -157,8 +157,8 @@ class LicenseViewController: PhotoViewClass{
             dateComponent.day = days * -1
             let futureDate = Calendar.current.date(byAdding: dateComponent, to: expirationDate)
             print(idString)
-            if let reminderDate = futureDate {
-                manager.addNotification(title: "\(selectedLicense?.parentCategory.first?.name ?? "") \(selectedLicense?.name) License will expire soon.", dateTime: manager.currentDateComponents(reminderDate: reminderDate), id : idString)
+            if let reminderDate = futureDate, let licenseName = selectedLicense?.name {
+                manager.addNotification(title: "\(selectedLicense?.parentCategory.first?.name ?? "") \(licenseName) License will expire soon.", dateTime: manager.currentDateComponents(reminderDate: reminderDate), id : idString)
             }
             manager.schedule()
         }
@@ -175,6 +175,45 @@ class LicenseViewController: PhotoViewClass{
             self.savedLabel.isHidden = true
             self.savedLabel.alpha = 1
         }
+    }
+    //MARK: - Alert stuff
+    
+    func reminderAlert(){
+        let alert = UIAlertController(title: "How long before expiration would you like to be reminded?", message: "", preferredStyle: .actionSheet)
+        
+        
+        let none = UIAlertAction(title: "None", style: .default) { (none) in
+            self.inputValidation(alertTimeDays: 0)
+        }
+        
+        let oneDay = UIAlertAction(title: "One day", style: .default) { (oneDay) in
+            self.inputValidation(alertTimeDays: 1)
+        }
+        
+        let oneWeek = UIAlertAction(title: "One week", style: .default) { (oneWeek) in
+            self.inputValidation(alertTimeDays: 7)
+        }
+        
+        let twoWeeks = UIAlertAction(title: "Two weeks", style: .default) { (twoWeeks) in
+            self.inputValidation(alertTimeDays: 14)
+        }
+        
+        let oneMonth = UIAlertAction(title: "One month", style: .default) { (oneMonth) in
+            self.inputValidation(alertTimeDays: 30)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (_) -> Void in
+            
+        })
+        
+        alert.addAction(none)
+        alert.addAction(oneDay)
+        alert.addAction(oneWeek)
+        alert.addAction(twoWeeks)
+        alert.addAction(oneMonth)
+        alert.addAction(cancel)
+        present(alert,animated: true,completion: nil)
+        
     }
 }
 

@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notificationManager = LocalNotificationManager()
      let delegate = self
      func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-             print("Hi")
          //Load URL into the app.
          self.window = UIWindow(frame: UIScreen.main.bounds)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -41,18 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //Realm SetUp
+        realmSetUp()
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
-        do{
-            _ = try Realm()
-        } catch {
-            print("Error in realming")
-        }
+        
+        
+
+
         
         UNUserNotificationCenter.current().delegate = self
         notificationManager.requestPermission()
@@ -62,6 +62,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return true
     }
+    
+    func realmSetUp(){
+        print("Attempting realm migration")
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+            })
+        Realm.Configuration.defaultConfiguration = config
+        let realm = try! Realm()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL as Any)
+        do{
+            _ = try Realm()
+        } catch {
+            print("Error in realming")
+        }
+    }
+    
+    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

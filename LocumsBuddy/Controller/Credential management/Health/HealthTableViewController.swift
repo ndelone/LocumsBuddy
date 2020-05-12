@@ -82,6 +82,11 @@ class HealthTableViewController: SwipeCellController {
         print("Deleting health item in realm")
         
         do {
+            //Delete notifications
+            let notificationManager = LocalNotificationManager()
+            let notificationID = notificationManager.makeHealthIDString(selectedHealth: healthList?[indexPath.row])
+            notificationManager.deleteNotification(id: notificationID)
+            
             try! realm.write {
                 if let documentToDelete = healthList?[indexPath.row] {
                     realm.delete(documentToDelete)

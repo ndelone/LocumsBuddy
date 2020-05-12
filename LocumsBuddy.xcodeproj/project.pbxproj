@@ -107,9 +107,9 @@
 			children = (
 				6D507261244DF71000ADAD67 /* Constants.swift */,
 				6DB998AD243BD62700506516 /* StateTableViewController.swift */,
+				6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */,
 				6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */,
 				6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */,
-				6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";

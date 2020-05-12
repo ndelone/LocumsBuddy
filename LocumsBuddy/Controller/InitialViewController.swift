@@ -11,6 +11,7 @@ import UIKit
 import RealmSwift
 
 class ViewController: UIViewController {
+    
     let notificationManager = LocalNotificationManager()
     
     @IBOutlet weak var expirationBadgeImageView: UIImageView!
@@ -23,7 +24,8 @@ class ViewController: UIViewController {
     @IBAction func listNotificationsButtonPressed(_ sender: UIButton) {
         notificationManager.listScheduledNotifications()
     }
-    let realm = try! Realm()
+    
+    //let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -56,6 +58,7 @@ class ViewController: UIViewController {
     
     
     func initializingFunction(){
+        let realm = try! Realm()
         if (realm.objects(LicenseRepository.self).count < 1) {
             print("No License Repository has been established, setting one up now.")
             let initialStateList = ["Alaska","Alabama","Arkansas","American Samoa","Arizona","California","Colorado","Connecticut","District of Columbia","Delaware","Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Massachusetts","Maryland","Maine","Michigan","Minnesota","Missouri","Mississippi","Montana","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Virgin Islands","Vermont","Washington","Wisconsin","West Virginia","Wyoming"]
@@ -145,6 +148,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "nationalLicenseSegue"{
+            let realm = try! Realm()
             let destinationVC = segue.destination as! LicenseTableViewController
             destinationVC.selectedState = realm.objects(State.self).filter("name == %@","National").first
         }
@@ -152,6 +156,7 @@ class ViewController: UIViewController {
     }
     
     func areLicensesExpiringSoon() -> Bool {
+        let realm = try! Realm()
         //var dateComponent = DateComponents(day: 31)
         let oneMonthLaterDate = Calendar.current.date(byAdding: DateComponents(day: 31), to: Calendar.current.startOfDay(for: Date()))
         let resultsList = realm.objects(License.self).filter("expirationDate <= %@ && showReminder == true", oneMonthLaterDate).sorted(byKeyPath: "expirationDate", ascending: true)
@@ -163,6 +168,22 @@ class ViewController: UIViewController {
             expirationBadgeImageView.tintColor = (alreadyExpiredList.count == 0 ? UIColor.yellow : UIColor.red)
             return true
         }
+    }
+    
+    func realmSetUp(){
+        print("Attempting realm migration")
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+            })
+        Realm.Configuration.defaultConfiguration = config
+        let _ = try! Realm()
     }
 }
 
