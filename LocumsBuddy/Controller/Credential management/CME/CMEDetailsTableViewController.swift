@@ -15,9 +15,9 @@ class CMEDetailsTableViewController: PhotoViewClass {
     @IBOutlet weak var issueDatePicker: UIDatePicker!
     @IBOutlet weak var creditTypePicker: UIPickerView!
     let creditTypeData = ["AMA PRA I", "AMA PRA II"]
-    lazy var creditTypeDict = [creditTypeData[0]: 1, creditTypeData[1]: 2]
+    lazy var creditTypeDict = [creditTypeData[0]: 0, creditTypeData[1]: 1]
     @IBOutlet weak var creditAmountPicker: UIPickerView!
-    let creditAmountPickerData = (1...20).map { $0 }
+    let creditAmountPickerData = (1...30).map { $0 }
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     var selectedCME : CME?
@@ -50,6 +50,7 @@ class CMEDetailsTableViewController: PhotoViewClass {
         issueDatePicker.date = selectedCME?.issueDate ?? Date()
         creditAmountPicker.selectRow(((selectedCME?.creditAmount ?? 1) - 1), inComponent: 0, animated: false)
         creditTypePicker.selectRow(creditTypeDict[selectedCME?.creditType ?? "AMA PRA I"] ?? 0, inComponent: 0, animated: false)
+        print(creditTypeDict[selectedCME?.creditType ?? "AMA PRA I"])
         commentTextField.text = selectedCME?.comment
     }
 

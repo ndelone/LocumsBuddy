@@ -9,14 +9,33 @@
 import UIKit
 import MessageUI
 
-class SideMenuViewController: UITableViewController, MFMailComposeViewControllerDelegate {
+class SideMenuViewController: UITableViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
+    var textField = UITextField()
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        guard let textFieldText = textField.text,
+//            let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+//                return false
+//        }
+//        let substringToReplace = textFieldText[rangeOfTextToReplace]
+//        let count = textFieldText.count - substringToReplace.count + string.count
+//        return count <= 5
+//    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 1
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
+        textField.delegate = self
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
@@ -33,16 +52,19 @@ class SideMenuViewController: UITableViewController, MFMailComposeViewController
     
     
     func chooseWaterMark(){
-        var textField = UITextField()
+       // var textField = UITextField()
+
         let alert = UIAlertController(title: "What text would you like to watermark your CV?", message: "(The watermark will disappear after you return to the starting screen)", preferredStyle: .alert)
         let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("BaseCV.pdf")
+        
+
         if FileManager.default.fileExists(atPath: documentURL.path) {
             alert.addTextField { (alertTextField) in
-                alertTextField.placeholder = "Exclusive Presentation For ABEM General"
-                textField = alertTextField
+                alertTextField.placeholder = "ABEM General ONLY"
+                self.textField = alertTextField
             }
             let action = UIAlertAction(title: "Ok", style: .default) { (action) in
-                waterMark = NSString(string: textField.text!)
+                waterMark = NSString(string: self.textField.text!)
                 print(waterMark)
                 weak var pvc = self.presentingViewController?.children[1] as? CVViewController
                 pvc?.loadDocument(documentURL: documentURL)

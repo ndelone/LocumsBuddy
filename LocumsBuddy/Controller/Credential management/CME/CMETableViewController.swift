@@ -64,7 +64,6 @@ class CMETableViewController: SwipeCellController {
 
     @objc override func textChanged(_ sender:UITextField) {
         if sender.text! != "" {
-            print("This many objects share same name: \(cmeList?.filter("name ==[cd] %@", sender.text!).count)")
             if ((cmeList?.filter("name ==[cd] %@", sender.text!).count) ?? 0 == 0) {
                 self.actionToEnable?.isEnabled = true
             } else {
@@ -101,7 +100,7 @@ class CMETableViewController: SwipeCellController {
         print("Deleting CME in realm")
         
         do {
-            try! realm.write {
+            try realm.write {
                 if let documentToDelete = cmeList?[indexPath.row] {
                     realm.delete(documentToDelete)
                 }

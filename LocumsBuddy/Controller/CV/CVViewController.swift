@@ -122,21 +122,36 @@ class WatermarkPage: PDFPage{
         context.scaleBy(x: 1.0, y: -1.0)
         context.rotate(by: CGFloat.pi / 4.0)
         let string: NSString = waterMark//"Exclusive Presentation for Binghampton"
-        let boundingRectangle = CGRect(origin: CGPoint(x: 200, y: 40), size: CGSize(width: 600, height: 200))
+        let boundingRectangle = CGRect(origin: CGPoint(x: 200, y: 40), size: CGSize(width: 600, height: 150))
         let area:CGFloat = boundingRectangle.width * boundingRectangle.height
         let optimalFontSize = sqrt(area / CGFloat(string.length))
-        
-        
+        let optimalFont = UIFont(named: "HelveticaNeue-Bold", fitting: string as String, into: boundingRectangle.size, with: .init(), options: NSStringDrawingOptions.usesLineFragmentOrigin)
         let attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 0.3),
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: optimalFontSize)
+            NSAttributedString.Key.font: optimalFont!//UIFont.boldSystemFont(ofSize: optimalFontSize)
         ]
-        string.draw(with: boundingRectangle, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
         
+        string.draw(with: boundingRectangle, attributes: attributes, context: nil)
         context.restoreGState()
         UIGraphicsPopContext()
     }
 }
 
 
+extension UIFont {
+    convenience init?(named fontName: String, fitting text: String, into targetSize: CGSize, with attributes: [NSAttributedString.Key: Any], options: NSStringDrawingOptions) {
+        var attributes = attributes
+        let fontSize = targetSize.height
 
+        attributes[.font] = UIFont(name: fontName, size: fontSize)
+        let size = text.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: fontSize),
+                                     options: options,
+                                     attributes: attributes,
+                                     context: nil).size
+
+        let heightSize = targetSize.height / (size.height / fontSize)
+        let widthSize = targetSize.width / (size.width / fontSize)
+
+        self.init(name: fontName, size: min(heightSize, widthSize))
+    }
+}
