@@ -145,7 +145,7 @@ class LicenseViewController: PhotoViewClass{
         issueDatePicker.date = selectedLicense?.issueDate ?? Date()
         expirationDatePicker.date = selectedLicense?.expirationDate ?? Date()
         alarmLabel.text = selectedLicense?.alarmText
-        self.title = selectedLicense?.licenseType
+        self.title = "\(selectedLicense?.name) license"
     }
     
     
