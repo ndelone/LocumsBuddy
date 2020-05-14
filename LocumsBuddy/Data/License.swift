@@ -19,5 +19,11 @@ class License : Object {
     @objc dynamic var savingPath = ""
     @objc dynamic var name = ""
     
+    //License renewal data
+    @objc dynamic var renewalCMEs = 0
+    @objc dynamic var renewalFee  = 0.0
+    @objc dynamic var renewalCMEYears : Int = 0
+    @objc dynamic var renewalURLString : String = ""
+    
     var parentCategory = LinkingObjects(fromType: State.self, property: "licenseList")
 }

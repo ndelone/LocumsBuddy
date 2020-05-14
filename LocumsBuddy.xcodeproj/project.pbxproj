@@ -11,6 +11,7 @@
 		6D01B806243CE6CB0044CE10 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B805243CE6CB0044CE10 /* License.swift */; };
 		6D01B808243CE8BC0044CE10 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */; };
 		6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */; };
+		6D078E97246CE8E6006EBE16 /* RenewLicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D078E96246CE8E6006EBE16 /* RenewLicenseTableViewController.swift */; };
 		6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */; };
 		6D3F415F2447996100BCF99B /* CredentialManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */; };
 		6D3F4161244799BA00BCF99B /* EmployerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F4160244799BA00BCF99B /* EmployerTableViewController.swift */; };
@@ -47,6 +48,7 @@
 		6D01B805243CE6CB0044CE10 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseTableViewController.swift; sourceTree = "<group>"; };
+		6D078E96246CE8E6006EBE16 /* RenewLicenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewLicenseTableViewController.swift; sourceTree = "<group>"; };
 		6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
 		6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManagerViewController.swift; sourceTree = "<group>"; };
 		6D3F4160244799BA00BCF99B /* EmployerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerTableViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */,
 				6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */,
 				6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */,
+				6D078E96246CE8E6006EBE16 /* RenewLicenseTableViewController.swift */,
 			);
 			path = Licenses;
 			sourceTree = "<group>";
@@ -129,10 +132,10 @@
 		6D4AB771244912F400DCEB14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6DB99893243B72F300506516 /* InitialViewController.swift */,
 				6DB9988F243B72F300506516 /* AppDelegate.swift */,
 				6DB998AB243B91A200506516 /* LocalNotificationManager.swift */,
 				6D5A3C9A246C2BF7005178FE /* CV */,
-				6DB99893243B72F300506516 /* InitialViewController.swift */,
 				6D591525244A27BD00A9DA01 /* PhotoViewClass.swift */,
 				6D4AB772244917C800DCEB14 /* SwipeCellController.swift */,
 				6DBAD0B6244CDCFE00123B77 /* ExpirationList */,
@@ -369,6 +372,7 @@
 				6DB99894243B72F300506516 /* InitialViewController.swift in Sources */,
 				6D4AB778244A0C0E00DCEB14 /* HealthTableViewController.swift in Sources */,
 				6DB998A4243B8A4400506516 /* CVViewController.swift in Sources */,
+				6D078E97246CE8E6006EBE16 /* RenewLicenseTableViewController.swift in Sources */,
 				6D591528244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift in Sources */,
 				6DB998AE243BD62700506516 /* StateTableViewController.swift in Sources */,
 				6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */,

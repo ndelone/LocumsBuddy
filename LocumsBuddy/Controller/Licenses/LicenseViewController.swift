@@ -69,16 +69,17 @@ class LicenseViewController: PhotoViewClass{
         saveLicense()
     }
     
-    //MARK: - Save Button
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        
-//        if inputPassesValidation(alertTimeDays: alertTime) {
-//            saveLicense()
-//            setNotification(days: alertTime)
-//            displaySaveBanner()
-//        }
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "renewalSegue":
+            let destinationVC = segue.destination as! RenewLicenseTableViewController
+            destinationVC.selectedLicense = selectedLicense
+        default:
+            let destinationVC = segue.destination as! RenewLicenseTableViewController
+            destinationVC.selectedLicense = selectedLicense
+        }
     }
+    
     //MARK: - Validate licenses input
     
     func validationAlert(alarmText : String){
@@ -92,21 +93,21 @@ class LicenseViewController: PhotoViewClass{
         if alertTimeDays == 0 {
             alertTime = 0
             setNotification(days: alertTimeDays)
-                } else {
-                    var dateComponent = DateComponents()
-                    dateComponent.day = alertTimeDays * -1
-                    let reminderDate = Calendar.current.date(byAdding: dateComponent, to: Calendar.current.startOfDay(for: expirationDatePicker.date))
-                    let today = Calendar.current.startOfDay(for: Date())
-                    //Ensure alarm date is at least 2 days from current date
-                    guard let diffInDays = Calendar.current.dateComponents([.day], from: today, to: reminderDate!).day else {return}
-                    print(diffInDays)
-                    if diffInDays >= 2 {
-                        print("Passed validation")
-                        alertTime = alertTimeDays
-                        setNotification(days: alertTimeDays)
-                    } else {
-                        validationAlert(alarmText: "Reminder needs to be at least 2 days from today.")
-                    }
+        } else {
+            var dateComponent = DateComponents()
+            dateComponent.day = alertTimeDays * -1
+            let reminderDate = Calendar.current.date(byAdding: dateComponent, to: Calendar.current.startOfDay(for: expirationDatePicker.date))
+            let today = Calendar.current.startOfDay(for: Date())
+            //Ensure alarm date is at least 2 days from current date
+            guard let diffInDays = Calendar.current.dateComponents([.day], from: today, to: reminderDate!).day else {return}
+            print(diffInDays)
+            if diffInDays >= 2 {
+                print("Passed validation")
+                alertTime = alertTimeDays
+                setNotification(days: alertTimeDays)
+            } else {
+                validationAlert(alarmText: "Reminder needs to be at least 2 days from today.")
+            }
         }
     }
     
@@ -121,6 +122,10 @@ class LicenseViewController: PhotoViewClass{
         newLicense.alarmText = alarmLabel.text ?? "None"
         newLicense.name = selectedLicense!.name
         newLicense.savingPath = selectedLicense!.savingPath
+        newLicense.renewalCMEYears = selectedLicense!.renewalCMEYears
+        newLicense.renewalURLString = selectedLicense!.renewalURLString
+        newLicense.renewalFee = selectedLicense!.renewalFee
+        newLicense.renewalCMEs = selectedLicense!.renewalCMEs
         
         do {
             try realm.write{
@@ -140,6 +145,7 @@ class LicenseViewController: PhotoViewClass{
         issueDatePicker.date = selectedLicense?.issueDate ?? Date()
         expirationDatePicker.date = selectedLicense?.expirationDate ?? Date()
         alarmLabel.text = selectedLicense?.alarmText
+        self.title = selectedLicense?.licenseType
     }
     
     

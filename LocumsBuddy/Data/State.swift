@@ -17,6 +17,5 @@ class State : Object {
     @objc dynamic var deaLicense : License?
     
     let licenseList = List<License>()
-    
      var parentCategory = LinkingObjects(fromType: LicenseRepository.self, property: "stateChoiceList")
 }

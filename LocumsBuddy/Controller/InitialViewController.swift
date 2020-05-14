@@ -13,7 +13,6 @@ import RealmSwift
 class ViewController: UIViewController {
     
     let notificationManager = LocalNotificationManager()
-    
     @IBOutlet weak var expirationBadgeImageView: UIImageView!
     @IBOutlet weak var documentListButtonOutlet: UIButton!
     @IBOutlet weak var cvButtonOutlet: UIButton!
@@ -62,6 +61,7 @@ class ViewController: UIViewController {
         if (realm.objects(LicenseRepository.self).count < 1) {
             print("No License Repository has been established, setting one up now.")
             let initialStateList = ["Alaska","Alabama","Arkansas","American Samoa","Arizona","California","Colorado","Connecticut","District of Columbia","Delaware","Florida","Georgia","Guam","Hawaii","Iowa","Idaho","Illinois","Indiana","Kansas","Kentucky","Louisiana","Massachusetts","Maryland","Maine","Michigan","Minnesota","Missouri","Mississippi","Montana","North Carolina","North Dakota","Nebraska","New Hampshire","New Jersey","New Mexico","Nevada","New York","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Virginia","Virgin Islands","Vermont","Washington","Wisconsin","West Virginia","Wyoming"]
+            let stateDictionary = ["Maryland" : [50,2,486.00,"https://www.mbp.state.md.us/licensure_phyrenewals.aspx"],"New York" : [0,0,500.00,"https://www.mbp.state.md.us/licensure_phyrenewals.aspx"] ]
             let nationalLicenses = ["NPI", "ACLS","PALS","ATLS"]
             do {
                 try realm.write {
@@ -71,12 +71,19 @@ class ViewController: UIViewController {
                         let newState = State()
                         newState.name = state
                         let savingPath =  "State Licenses/\(state)"
+                        
                         //Adding in default DEA/Medical licenses
                         let newMedicalLicense = License()
                         newMedicalLicense.name = "Medical"
                         newMedicalLicense.licenseType = "State"
                         newMedicalLicense.savingPath = savingPath
                         newState.licenseList.append(newMedicalLicense)
+                        if let renewalvalues = stateDictionary[state] {
+                            newMedicalLicense.renewalCMEs = (renewalvalues[0] as! Int)
+                            newMedicalLicense.renewalCMEYears = (renewalvalues[1] as! Int)
+                            newMedicalLicense.renewalFee = (renewalvalues[2] as! Double)
+                            newMedicalLicense.renewalURLString = (renewalvalues[3] as! String)
+                        }
                         
                         
                         let newDEALicense = License()
@@ -186,4 +193,6 @@ class ViewController: UIViewController {
         let _ = try! Realm()
     }
 }
+
+
 
