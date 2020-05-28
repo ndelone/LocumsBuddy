@@ -50,7 +50,7 @@ class LicenseTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! LicenseViewController
         destinationVC.selectedLicense = selectedLicense
-        destinationVC.title = selectedLicense?.name
+        destinationVC.title = selectedLicense!.name
     }
     
     func loadLicenses(){

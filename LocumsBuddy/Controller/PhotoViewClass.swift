@@ -33,7 +33,7 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
     
     //MARK: - Save/load button pressed alert menu
     
-
+    
     func saveButtonPressedDone() {
         
         let alert = UIAlertController(title: "Add Photo", message: "", preferredStyle: .alert)
@@ -45,6 +45,20 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
             self.selectImageFrom(.camera)
         }))
         
+        if let imagePath = imageURL?.appendingPathComponent(imageName).path {
+            if FileManager.default.fileExists(atPath: imagePath) {
+                alert.addAction(UIAlertAction(title: "Delete photo", style: .default, handler: { (UIAlertAction) in
+                    do {
+                        try FileManager.default.removeItem(atPath: imagePath)
+                        print("Removed old image")
+                        self.loadImageView.image = UIImage(systemName: "photo")
+                    } catch let removeError {
+                        print("couldn't remove file at path", removeError)
+                    }
+                }))
+            }
+        }
+                
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alert, animated:true, completion: nil)
@@ -110,7 +124,7 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
         }
         present(imagePicker, animated: true, completion: nil)
     }
-    
+        
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else {
             print("Didn't get the photo")

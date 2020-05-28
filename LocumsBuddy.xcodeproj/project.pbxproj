@@ -29,6 +29,7 @@
 		6D591528244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D591527244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift */; };
 		6D59152B244A7EB700A9DA01 /* CMETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D59152A244A7EB700A9DA01 /* CMETableViewController.swift */; };
 		6D59152D244A809900A9DA01 /* CME.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D59152C244A809900A9DA01 /* CME.swift */; };
+		6D61AF34247FDDAE000F2513 /* RenewalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61AF33247FDDAE000F2513 /* RenewalInfo.swift */; };
 		6D66B27D243CBE83001B09FB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B27C243CBE83001B09FB /* State.swift */; };
 		6D66B27F243CBEE0001B09FB /* LicenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */; };
 		6DB99890243B72F300506516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9988F243B72F300506516 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 		6D591527244A7E8E00A9DA01 /* CMEDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMEDetailsTableViewController.swift; sourceTree = "<group>"; };
 		6D59152A244A7EB700A9DA01 /* CMETableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CMETableViewController.swift; path = "/Users/nd/Documents/LocumsBuddy2/LocumsBuddy/Controller/Credential management/CME/CMETableViewController.swift"; sourceTree = "<absolute>"; };
 		6D59152C244A809900A9DA01 /* CME.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CME.swift; sourceTree = "<group>"; };
+		6D61AF33247FDDAE000F2513 /* RenewalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewalInfo.swift; sourceTree = "<group>"; };
 		6D66B27C243CBE83001B09FB /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseRepository.swift; sourceTree = "<group>"; };
 		6DB9988C243B72F300506516 /* LocumsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocumsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +109,6 @@
 		6D3A6DC9244BAD170086C520 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				6D507261244DF71000ADAD67 /* Constants.swift */,
 				6DB998AD243BD62700506516 /* StateTableViewController.swift */,
 				6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */,
 				6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */,
@@ -132,6 +133,7 @@
 		6D4AB771244912F400DCEB14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6D507261244DF71000ADAD67 /* Constants.swift */,
 				6DB99893243B72F300506516 /* InitialViewController.swift */,
 				6DB9988F243B72F300506516 /* AppDelegate.swift */,
 				6DB998AB243B91A200506516 /* LocalNotificationManager.swift */,
@@ -190,6 +192,7 @@
 				6D01B805243CE6CB0044CE10 /* License.swift */,
 				6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */,
 				6D59152C244A809900A9DA01 /* CME.swift */,
+				6D61AF33247FDDAE000F2513 /* RenewalInfo.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				6D591526244A27BD00A9DA01 /* PhotoViewClass.swift in Sources */,
 				6D4AB77624492DE400DCEB14 /* EmployerDetailTableViewController.swift in Sources */,
 				6DB99894243B72F300506516 /* InitialViewController.swift in Sources */,
+				6D61AF34247FDDAE000F2513 /* RenewalInfo.swift in Sources */,
 				6D4AB778244A0C0E00DCEB14 /* HealthTableViewController.swift in Sources */,
 				6DB998A4243B8A4400506516 /* CVViewController.swift in Sources */,
 				6D078E97246CE8E6006EBE16 /* RenewLicenseTableViewController.swift in Sources */,

@@ -18,6 +18,7 @@ class LicenseViewController: PhotoViewClass{
     @IBOutlet weak var savedLabel: UILabel!
     @IBOutlet weak var alarmLabel: UILabel!
     @IBOutlet weak var issueDatePicker: UIDatePicker!
+    @IBOutlet weak var renewalTableViewCell: UITableViewCell!
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     @IBAction func issueDateChanged(_ sender: UIDatePicker) {
         expirationDatePicker.minimumDate = sender.date
@@ -27,6 +28,7 @@ class LicenseViewController: PhotoViewClass{
         inputValidation(alertTimeDays: 0)
     }
     @IBOutlet weak var licenseTextField: UITextField!
+    
     let manager = LocalNotificationManager()
     var alertTime: Int = 0 {
         didSet{
@@ -41,12 +43,16 @@ class LicenseViewController: PhotoViewClass{
         super.viewDidLoad()
         licenseTextField.delegate = self
         loadInformation()
-        //print(selectedLicense)
+        
+        setImageInformation()
+    }
+    
+    
+    func setImageInformation(){
         super.imageURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(selectedLicense!.savingPath)
         super.imageName = "\(selectedLicense!.name).jpeg"
         super.loadImageView = imageView
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -145,7 +151,9 @@ class LicenseViewController: PhotoViewClass{
         issueDatePicker.date = selectedLicense?.issueDate ?? Date()
         expirationDatePicker.date = selectedLicense?.expirationDate ?? Date()
         alarmLabel.text = selectedLicense?.alarmText
-        self.title = "\(selectedLicense?.name) license"
+        self.title = "\(selectedLicense!.name) license"
+        renewalTableViewCell.isHidden = !(selectedLicense?.name == "Medical")
+        renewalTableViewCell.isUserInteractionEnabled = (selectedLicense?.name == "Medical")
     }
     
     

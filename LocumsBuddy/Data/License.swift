@@ -24,6 +24,7 @@ class License : Object {
     @objc dynamic var renewalFee  = 0.0
     @objc dynamic var renewalCMEYears : Int = 0
     @objc dynamic var renewalURLString : String = ""
+    @objc dynamic var renewalInformationDateRetrieved: String = ""
     
     var parentCategory = LinkingObjects(fromType: State.self, property: "licenseList")
 }
