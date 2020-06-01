@@ -128,10 +128,7 @@ class LicenseViewController: PhotoViewClass{
         newLicense.alarmText = alarmLabel.text ?? "None"
         newLicense.name = selectedLicense!.name
         newLicense.savingPath = selectedLicense!.savingPath
-        newLicense.renewalCMEYears = selectedLicense!.renewalCMEYears
-        newLicense.renewalURLString = selectedLicense!.renewalURLString
-        newLicense.renewalFee = selectedLicense!.renewalFee
-        newLicense.renewalCMEs = selectedLicense!.renewalCMEs
+       
         
         do {
             try realm.write{

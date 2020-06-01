@@ -29,12 +29,12 @@ class RenewLicenseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        //print(indexPath.row)
         if indexPath.section == 1 {
             if let url = URL(string: renewalWebsiteString) {
                 UIApplication.shared.open(url)
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func loadData(){
@@ -51,7 +51,7 @@ class RenewLicenseTableViewController: UITableViewController {
     }
     
     func loadTableText(){
-        let cmeEarned = getCME(timespan: selectedLicense!.renewalCMEYears)
+        
         cmeRequirementsCell.textLabel?.numberOfLines = 0
         cmeRequirementsCell.textLabel?.font = k.textFont
         cmeRequirementsCell.textLabel?.attributedText = generateCMEString(cmeRequired: renewalCme, timespanCMEEarned: renewalYears)
@@ -92,13 +92,13 @@ class RenewLicenseTableViewController: UITableViewController {
         
         let normalFont = [NSAttributedString.Key.font : k.textFont, NSAttributedString.Key.foregroundColor : k.textColor]
         
-        let attributedString1 = NSMutableAttributedString(string:"\(cmeRequired)", attributes: cmeEarned < cmeRequired ? redFont : greenFont)
+        let attributedString1 = NSMutableAttributedString(string:"\(cmeRequired)", attributes: cmeEarned < cmeRequired ? redFont as [NSAttributedString.Key : Any] : greenFont as [NSAttributedString.Key : Any])
         
-        let attributedString2 = NSMutableAttributedString(string: " CMEs are required over the past \(renewalYears) years. You have completed ", attributes: normalFont)
+        let attributedString2 = NSMutableAttributedString(string: " CMEs are required over the past \(renewalYears) years. You have completed ", attributes: normalFont as [NSAttributedString.Key : Any])
         
-        let attributedString3 = NSMutableAttributedString(string:"\(cmeEarned)", attributes: cmeEarned < cmeRequired ? redFont : greenFont)
+        let attributedString3 = NSMutableAttributedString(string:"\(cmeEarned)", attributes: cmeEarned < cmeRequired ? redFont : greenFont as [NSAttributedString.Key : Any])
         
-        let attributedString4 = NSMutableAttributedString(string:" in the past \(renewalYears) years.", attributes: normalFont)
+        let attributedString4 = NSMutableAttributedString(string:" in the past \(renewalYears) years.", attributes: normalFont as [NSAttributedString.Key : Any])
         
         attributedString1.append(attributedString2)
         attributedString1.append(attributedString3)

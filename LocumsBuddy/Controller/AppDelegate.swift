@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func realmSetUp(){
         print("Attempting realm migration")
         let config = Realm.Configuration(
-            schemaVersion: 2,
+            schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
                 // We haven’t migrated anything yet, so oldSchemaVersion == 0
                 if (oldSchemaVersion < 1) {

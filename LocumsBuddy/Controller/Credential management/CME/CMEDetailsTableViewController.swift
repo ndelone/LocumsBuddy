@@ -50,7 +50,6 @@ class CMEDetailsTableViewController: PhotoViewClass {
         issueDatePicker.date = selectedCME?.issueDate ?? Date()
         creditAmountPicker.selectRow(((selectedCME?.creditAmount ?? 1) - 1), inComponent: 0, animated: false)
         creditTypePicker.selectRow(creditTypeDict[selectedCME?.creditType ?? "AMA PRA I"] ?? 0, inComponent: 0, animated: false)
-        print(creditTypeDict[selectedCME?.creditType ?? "AMA PRA I"])
         commentTextField.text = selectedCME?.comment
     }
 
