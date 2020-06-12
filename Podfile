@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
  platform :ios, '10.0'
 
-target 'LocumsBuddy2' do
+target 'LocumsBuddy' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -10,4 +10,5 @@ target 'LocumsBuddy2' do
   pod 'RealmSwift'
   pod 'SwipeCellKit'
   pod 'McPicker'
+  pod 'Updates'
 end

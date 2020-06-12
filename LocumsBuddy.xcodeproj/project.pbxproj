@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01DDCFF0B0993D934762CA77 /* Pods_LocumsBuddy2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA29544D38CE8ECE93029867 /* Pods_LocumsBuddy2.framework */; };
+		39AD7F4E855FD3B7F61DDCB0 /* Pods_LocumsBuddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B139ED60247C3384E231F0 /* Pods_LocumsBuddy.framework */; };
 		6D01B806243CE6CB0044CE10 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B805243CE6CB0044CE10 /* License.swift */; };
 		6D01B808243CE8BC0044CE10 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */; };
 		6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */; };
 		6D078E97246CE8E6006EBE16 /* RenewLicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D078E96246CE8E6006EBE16 /* RenewLicenseTableViewController.swift */; };
+		6D35937B2493AACA00669415 /* Updates.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D35937A2493AAC900669415 /* Updates.json */; };
 		6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */; };
 		6D3F415F2447996100BCF99B /* CredentialManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */; };
 		6D3F4161244799BA00BCF99B /* EmployerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F4160244799BA00BCF99B /* EmployerTableViewController.swift */; };
@@ -46,10 +47,12 @@
 
 /* Begin PBXFileReference section */
 		053437AC9FA4D59766CD7BA7 /* Pods-LocumsBuddy2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy2.release.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2.release.xcconfig"; sourceTree = "<group>"; };
+		3066E9D62CAF6243165C5567 /* Pods-LocumsBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy.debug.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		6D01B805243CE6CB0044CE10 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseTableViewController.swift; sourceTree = "<group>"; };
 		6D078E96246CE8E6006EBE16 /* RenewLicenseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewLicenseTableViewController.swift; sourceTree = "<group>"; };
+		6D35937A2493AAC900669415 /* Updates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Updates.json; sourceTree = "<group>"; };
 		6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
 		6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialManagerViewController.swift; sourceTree = "<group>"; };
 		6D3F4160244799BA00BCF99B /* EmployerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerTableViewController.swift; sourceTree = "<group>"; };
@@ -82,7 +85,8 @@
 		6DB998AB243B91A200506516 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		6DB998AD243BD62700506516 /* StateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableViewController.swift; sourceTree = "<group>"; };
 		8A5488706133A160AE1F96B8 /* Pods-LocumsBuddy2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy2.debug.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2.debug.xcconfig"; sourceTree = "<group>"; };
-		AA29544D38CE8ECE93029867 /* Pods_LocumsBuddy2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocumsBuddy2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3B139ED60247C3384E231F0 /* Pods_LocumsBuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocumsBuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC59DF3473F0F43F816D865F /* Pods-LocumsBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy.release.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01DDCFF0B0993D934762CA77 /* Pods_LocumsBuddy2.framework in Frameworks */,
 				6D42B84E2441515D0018C6D7 /* IQKeyboardManagerSwift in Frameworks */,
+				39AD7F4E855FD3B7F61DDCB0 /* Pods_LocumsBuddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,9 +105,17 @@
 		37955D2499631530138DAFDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA29544D38CE8ECE93029867 /* Pods_LocumsBuddy2.framework */,
+				B3B139ED60247C3384E231F0 /* Pods_LocumsBuddy.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D35937C2493AAD200669415 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D35937A2493AAC900669415 /* Updates.json */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		6D3A6DC9244BAD170086C520 /* Licenses */ = {
@@ -220,6 +232,7 @@
 			children = (
 				6D66B27B243CBE44001B09FB /* Data */,
 				6DB99895243B72F300506516 /* Main.storyboard */,
+				6D35937C2493AAD200669415 /* Supporting Files */,
 				6D4AB771244912F400DCEB14 /* Controller */,
 				6DB99898243B72FB00506516 /* Assets.xcassets */,
 				6DB998A9243B8FAE00506516 /* NothingHere.pdf */,
@@ -242,6 +255,8 @@
 			children = (
 				8A5488706133A160AE1F96B8 /* Pods-LocumsBuddy2.debug.xcconfig */,
 				053437AC9FA4D59766CD7BA7 /* Pods-LocumsBuddy2.release.xcconfig */,
+				3066E9D62CAF6243165C5567 /* Pods-LocumsBuddy.debug.xcconfig */,
+				FC59DF3473F0F43F816D865F /* Pods-LocumsBuddy.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -315,6 +330,7 @@
 				6DB9989C243B72FB00506516 /* LaunchScreen.storyboard in Resources */,
 				6DB998AA243B8FAE00506516 /* NothingHere.pdf in Resources */,
 				6DB99899243B72FB00506516 /* Assets.xcassets in Resources */,
+				6D35937B2493AACA00669415 /* Updates.json in Resources */,
 				6DB99897243B72F300506516 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,15 +344,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7F03EDFC9121BEF484328FF /* [CP] Check Pods Manifest.lock */ = {
@@ -354,7 +370,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LocumsBuddy2-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LocumsBuddy-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -538,7 +554,7 @@
 		};
 		6DB998A1243B72FB00506516 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A5488706133A160AE1F96B8 /* Pods-LocumsBuddy2.debug.xcconfig */;
+			baseConfigurationReference = 3066E9D62CAF6243165C5567 /* Pods-LocumsBuddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -550,7 +566,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.NDeLone.locumsbuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -561,7 +577,7 @@
 		};
 		6DB998A2243B72FB00506516 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 053437AC9FA4D59766CD7BA7 /* Pods-LocumsBuddy2.release.xcconfig */;
+			baseConfigurationReference = FC59DF3473F0F43F816D865F /* Pods-LocumsBuddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -573,7 +589,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.NDeLone.locumsbuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

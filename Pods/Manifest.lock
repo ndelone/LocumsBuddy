@@ -7,12 +7,14 @@ PODS:
     - Realm (= 4.3.2)
   - SideMenu (6.4.8)
   - SwipeCellKit (2.7.1)
+  - Updates (1.2.2)
 
 DEPENDENCIES:
   - McPicker
   - RealmSwift
   - SideMenu
   - SwipeCellKit
+  - Updates
 
 SPEC REPOS:
   trunk:
@@ -21,6 +23,7 @@ SPEC REPOS:
     - RealmSwift
     - SideMenu
     - SwipeCellKit
+    - Updates
 
 SPEC CHECKSUMS:
   McPicker: a0a6b8ece8f1642e05401a29867463aba501188b
@@ -28,7 +31,8 @@ SPEC CHECKSUMS:
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
+  Updates: 6a7fae8b2f99f41160db337823eef8e51f6f29a0
 
-PODFILE CHECKSUM: 46b15e4ab7475992bacdb7c171c72e04ef5f6317
+PODFILE CHECKSUM: d5c59babb0c6aeae48509eb79455787b017ea1bb
 
 COCOAPODS: 1.9.1
