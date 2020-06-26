@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_LocumsBuddy2VersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_LocumsBuddy2VersionString[];
+FOUNDATION_EXPORT double UpdatesVersionNumber;
+FOUNDATION_EXPORT const unsigned char UpdatesVersionString[];
 
