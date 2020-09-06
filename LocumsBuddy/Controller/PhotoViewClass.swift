@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZoomImageView
 
 class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -47,6 +48,12 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
         
         if let imagePath = imageURL?.appendingPathComponent(imageName).path {
             if FileManager.default.fileExists(atPath: imagePath) {
+                //If photo already exists, allow deletion or viewing.
+                alert.addAction(UIAlertAction(title: "View photo", style: .default, handler: { (UIAlertAction) in
+                    if let image = UIImage(contentsOfFile: imagePath) {
+                        self.popUpPicture(image: image)
+                    }
+                }))
                 alert.addAction(UIAlertAction(title: "Delete photo", style: .default, handler: { (UIAlertAction) in
                     do {
                         try FileManager.default.removeItem(atPath: imagePath)
@@ -58,7 +65,7 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
                 }))
             }
         }
-                
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alert, animated:true, completion: nil)
@@ -68,6 +75,27 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
         if let imageToDisplay = loadImageFromDiskWith(fileName: imageName) {
             displayImage.image = imageToDisplay
         }
+    }
+    
+    
+    //Method for zooming
+    
+
+    
+    //Method to view popup of image
+    
+    func popUpPicture(image: UIImage) {
+        let viewImage = UIScrollView()
+        viewImage.alpha=0.0
+        let viewImageController = UIViewController()
+        viewImageController.view.backgroundColor = UIColor.white
+        let imageView = ZoomImageView(image: image)
+        viewImage.addSubview(imageView)
+        
+        viewImageController.view.addSubview(imageView)
+        imageView.bindFrameToSuperviewBounds()
+//        self.navigationController?.pushViewController(viewImageController, animated: true)
+        self.present(viewImageController, animated: true, completion: nil)
     }
     
     
@@ -124,7 +152,7 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
         }
         present(imagePicker, animated: true, completion: nil)
     }
-        
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else {
             print("Didn't get the photo")
@@ -132,5 +160,21 @@ class PhotoViewClass: UITableViewController, UINavigationControllerDelegate, UII
         }
         saveImage(imageName: imageName, image: image)
         return dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIView {
+    func bindFrameToSuperviewBounds() {
+        guard let superview = self.superview else {
+            print("Error! `superview` was nil – call `addSubview(view: UIView)` before calling `bindFrameToSuperviewBounds()` to fix this.")
+            return
+        }
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.topAnchor.constraint(equalTo: superview.topAnchor, constant: 0).isActive = true
+        self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: 0).isActive = true
+        self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0).isActive = true
+        self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
+        
     }
 }
