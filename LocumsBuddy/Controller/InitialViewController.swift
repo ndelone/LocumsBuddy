@@ -9,6 +9,7 @@ public var appDelegateURL: URL?
 public var shouldPushCV = false
 import UIKit
 import RealmSwift
+import Updates
 
 class ViewController: UIViewController {
     
@@ -40,8 +41,7 @@ class ViewController: UIViewController {
         addShadows(documentListButtonOutlet)
         addShadows(credentialManagerButtonOutlet)
         initializingFunction()
-        
-        
+        checkUpdates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -184,6 +184,13 @@ class ViewController: UIViewController {
             })
         Realm.Configuration.defaultConfiguration = config
         let _ = try! Realm()
+    }
+    
+    func checkUpdates(){
+        Updates.configurationURL = Bundle.main.url(forResource: "Updates", withExtension: "json")
+        Updates.checkForUpdates { result in
+            UpdatesUI.promptToUpdate(result, presentingViewController: self)
+        }
     }
 }
 

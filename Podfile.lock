@@ -7,6 +7,7 @@ PODS:
     - Realm (= 4.3.2)
   - SideMenu (6.4.8)
   - SwipeCellKit (2.7.1)
+  - Updates (1.2.2)
   - ZoomImageView (0.6.0)
 
 DEPENDENCIES:
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - RealmSwift
   - SideMenu
   - SwipeCellKit
+  - Updates
   - ZoomImageView
 
 SPEC REPOS:
@@ -23,6 +25,7 @@ SPEC REPOS:
     - RealmSwift
     - SideMenu
     - SwipeCellKit
+    - Updates
     - ZoomImageView
 
 SPEC CHECKSUMS:
@@ -31,8 +34,9 @@ SPEC CHECKSUMS:
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
+  Updates: 6a7fae8b2f99f41160db337823eef8e51f6f29a0
   ZoomImageView: 2a88d0c10ad30b9a06c8f5660d51623fb32beed5
 
-PODFILE CHECKSUM: e7106e5356cc88cf91bcc7dff0c5c84007080da9
+PODFILE CHECKSUM: d1f7068f2302ab57ad148e36ab74f895e298eeb5
 
 COCOAPODS: 1.9.1

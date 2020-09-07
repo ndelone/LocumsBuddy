@@ -11,4 +11,5 @@ target 'LocumsBuddy' do
   pod 'SwipeCellKit'
   pod 'McPicker'
   pod 'ZoomImageView'
+  pod 'Updates'
 end

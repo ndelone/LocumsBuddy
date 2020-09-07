@@ -14,7 +14,7 @@
 		6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */; };
 		6D3F415F2447996100BCF99B /* CredentialManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */; };
 		6D3F4161244799BA00BCF99B /* EmployerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F4160244799BA00BCF99B /* EmployerTableViewController.swift */; };
-		6D42B84E2441515D0018C6D7 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 6D42B84D2441515D0018C6D7 /* SwiftPackageProductDependency */; };
+		6D42B84E2441515D0018C6D7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */; };
 		6D4828BB243E51D70021BEDB /* SetAlarmSideMenuTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */; };
 		6D4828BF243FEBD20021BEDB /* ViewRemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4828BE243FEBD20021BEDB /* ViewRemindersTableViewController.swift */; };
 		6D4AB76F2449084500DCEB14 /* Employer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB76E2449084500DCEB14 /* Employer.swift */; };
@@ -31,6 +31,7 @@
 		6D61AF34247FDDAE000F2513 /* RenewalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61AF33247FDDAE000F2513 /* RenewalInfo.swift */; };
 		6D66B27D243CBE83001B09FB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B27C243CBE83001B09FB /* State.swift */; };
 		6D66B27F243CBEE0001B09FB /* LicenseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */; };
+		6DA8F6C42506A4FC0023F4DC /* Supporting Files in Resources */ = {isa = PBXBuildFile; fileRef = 6DA8F6C32506A4FC0023F4DC /* Supporting Files */; };
 		6DB99890243B72F300506516 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9988F243B72F300506516 /* AppDelegate.swift */; };
 		6DB99894243B72F300506516 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB99893243B72F300506516 /* InitialViewController.swift */; };
 		6DB99897243B72F300506516 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DB99895243B72F300506516 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		6D61AF33247FDDAE000F2513 /* RenewalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewalInfo.swift; sourceTree = "<group>"; };
 		6D66B27C243CBE83001B09FB /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6D66B27E243CBEDF001B09FB /* LicenseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseRepository.swift; sourceTree = "<group>"; };
+		6DA8F6C32506A4FC0023F4DC /* Supporting Files */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Supporting Files"; sourceTree = SOURCE_ROOT; };
 		6DB9988C243B72F300506516 /* LocumsBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocumsBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB9988F243B72F300506516 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DB99893243B72F300506516 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D42B84E2441515D0018C6D7 /* BuildFile in Frameworks */,
+				6D42B84E2441515D0018C6D7 /* IQKeyboardManagerSwift in Frameworks */,
 				FBD2D7D427CBA34DDD5989AA /* Pods_LocumsBuddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +222,7 @@
 		6DB9988E243B72F300506516 /* LocumsBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				6DA8F6C32506A4FC0023F4DC /* Supporting Files */,
 				6D66B27B243CBE44001B09FB /* Data */,
 				6DB99895243B72F300506516 /* Main.storyboard */,
 				6D4AB771244912F400DCEB14 /* Controller */,
@@ -269,7 +272,7 @@
 			);
 			name = LocumsBuddy;
 			packageProductDependencies = (
-				6D42B84D2441515D0018C6D7 /* SwiftPackageProductDependency */,
+				6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */,
 			);
 			productName = LocumsBuddy2;
 			productReference = 6DB9988C243B72F300506516 /* LocumsBuddy.app */;
@@ -300,7 +303,7 @@
 			);
 			mainGroup = 6DB99883243B72F200506516;
 			packageReferences = (
-				6D42B84C2441515C0018C6D7 /* RemoteSwiftPackageReference */,
+				6D42B84C2441515C0018C6D7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 6DB9988D243B72F300506516 /* Products */;
 			projectDirPath = "";
@@ -319,6 +322,7 @@
 				6DB9989C243B72FB00506516 /* LaunchScreen.storyboard in Resources */,
 				6DB998AA243B8FAE00506516 /* NothingHere.pdf in Resources */,
 				6DB99899243B72FB00506516 /* Assets.xcassets in Resources */,
+				6DA8F6C42506A4FC0023F4DC /* Supporting Files in Resources */,
 				6DB99897243B72F300506516 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,7 +614,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6D42B84C2441515C0018C6D7 /* RemoteSwiftPackageReference */ = {
+		6D42B84C2441515C0018C6D7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -621,9 +625,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D42B84D2441515D0018C6D7 /* SwiftPackageProductDependency */ = {
+		6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6D42B84C2441515C0018C6D7 /* RemoteSwiftPackageReference */;
+			package = 6D42B84C2441515C0018C6D7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
