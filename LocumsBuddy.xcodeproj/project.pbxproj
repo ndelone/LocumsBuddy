@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01DDCFF0B0993D934762CA77 /* Pods_LocumsBuddy2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA29544D38CE8ECE93029867 /* Pods_LocumsBuddy2.framework */; };
 		6D01B806243CE6CB0044CE10 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B805243CE6CB0044CE10 /* License.swift */; };
 		6D01B808243CE8BC0044CE10 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B807243CE8BC0044CE10 /* LicenseViewController.swift */; };
 		6D01B80C243D4BE40044CE10 /* LicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D01B80B243D4BE40044CE10 /* LicenseTableViewController.swift */; };
@@ -15,7 +14,7 @@
 		6D3F415D2444E78100BCF99B /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415C2444E78100BCF99B /* DocumentListViewController.swift */; };
 		6D3F415F2447996100BCF99B /* CredentialManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F415E2447996100BCF99B /* CredentialManagerViewController.swift */; };
 		6D3F4161244799BA00BCF99B /* EmployerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F4160244799BA00BCF99B /* EmployerTableViewController.swift */; };
-		6D42B84E2441515D0018C6D7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */; };
+		6D42B84E2441515D0018C6D7 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 6D42B84D2441515D0018C6D7 /* SwiftPackageProductDependency */; };
 		6D4828BB243E51D70021BEDB /* SetAlarmSideMenuTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4828BA243E51D60021BEDB /* SetAlarmSideMenuTableController.swift */; };
 		6D4828BF243FEBD20021BEDB /* ViewRemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4828BE243FEBD20021BEDB /* ViewRemindersTableViewController.swift */; };
 		6D4AB76F2449084500DCEB14 /* Employer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4AB76E2449084500DCEB14 /* Employer.swift */; };
@@ -42,6 +41,7 @@
 		6DB998AA243B8FAE00506516 /* NothingHere.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6DB998A9243B8FAE00506516 /* NothingHere.pdf */; };
 		6DB998AC243B91A200506516 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB998AB243B91A200506516 /* LocalNotificationManager.swift */; };
 		6DB998AE243BD62700506516 /* StateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB998AD243BD62700506516 /* StateTableViewController.swift */; };
+		FBD2D7D427CBA34DDD5989AA /* Pods_LocumsBuddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB6C19F2C1744950E5A8267 /* Pods_LocumsBuddy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,7 +82,9 @@
 		6DB998AB243B91A200506516 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		6DB998AD243BD62700506516 /* StateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableViewController.swift; sourceTree = "<group>"; };
 		8A5488706133A160AE1F96B8 /* Pods-LocumsBuddy2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy2.debug.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2.debug.xcconfig"; sourceTree = "<group>"; };
-		AA29544D38CE8ECE93029867 /* Pods_LocumsBuddy2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocumsBuddy2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC575D835DAFDC6D4390CBCD /* Pods-LocumsBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy.release.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy.release.xcconfig"; sourceTree = "<group>"; };
+		BF4C8B073E9A59CD54C92A4C /* Pods-LocumsBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocumsBuddy.debug.xcconfig"; path = "Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy.debug.xcconfig"; sourceTree = "<group>"; };
+		DEB6C19F2C1744950E5A8267 /* Pods_LocumsBuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocumsBuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01DDCFF0B0993D934762CA77 /* Pods_LocumsBuddy2.framework in Frameworks */,
-				6D42B84E2441515D0018C6D7 /* IQKeyboardManagerSwift in Frameworks */,
+				6D42B84E2441515D0018C6D7 /* BuildFile in Frameworks */,
+				FBD2D7D427CBA34DDD5989AA /* Pods_LocumsBuddy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +103,7 @@
 		37955D2499631530138DAFDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA29544D38CE8ECE93029867 /* Pods_LocumsBuddy2.framework */,
+				DEB6C19F2C1744950E5A8267 /* Pods_LocumsBuddy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -242,6 +244,8 @@
 			children = (
 				8A5488706133A160AE1F96B8 /* Pods-LocumsBuddy2.debug.xcconfig */,
 				053437AC9FA4D59766CD7BA7 /* Pods-LocumsBuddy2.release.xcconfig */,
+				BF4C8B073E9A59CD54C92A4C /* Pods-LocumsBuddy.debug.xcconfig */,
+				BC575D835DAFDC6D4390CBCD /* Pods-LocumsBuddy.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -265,7 +269,7 @@
 			);
 			name = LocumsBuddy;
 			packageProductDependencies = (
-				6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */,
+				6D42B84D2441515D0018C6D7 /* SwiftPackageProductDependency */,
 			);
 			productName = LocumsBuddy2;
 			productReference = 6DB9988C243B72F300506516 /* LocumsBuddy.app */;
@@ -296,7 +300,7 @@
 			);
 			mainGroup = 6DB99883243B72F200506516;
 			packageReferences = (
-				6D42B84C2441515C0018C6D7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				6D42B84C2441515C0018C6D7 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 6DB9988D243B72F300506516 /* Products */;
 			projectDirPath = "";
@@ -328,15 +332,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy2/Pods-LocumsBuddy2-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocumsBuddy/Pods-LocumsBuddy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7F03EDFC9121BEF484328FF /* [CP] Check Pods Manifest.lock */ = {
@@ -354,7 +358,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LocumsBuddy2-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LocumsBuddy-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -538,7 +542,7 @@
 		};
 		6DB998A1243B72FB00506516 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A5488706133A160AE1F96B8 /* Pods-LocumsBuddy2.debug.xcconfig */;
+			baseConfigurationReference = BF4C8B073E9A59CD54C92A4C /* Pods-LocumsBuddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -561,7 +565,7 @@
 		};
 		6DB998A2243B72FB00506516 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 053437AC9FA4D59766CD7BA7 /* Pods-LocumsBuddy2.release.xcconfig */;
+			baseConfigurationReference = BC575D835DAFDC6D4390CBCD /* Pods-LocumsBuddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -606,7 +610,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6D42B84C2441515C0018C6D7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		6D42B84C2441515C0018C6D7 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -617,9 +621,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D42B84D2441515D0018C6D7 /* IQKeyboardManagerSwift */ = {
+		6D42B84D2441515D0018C6D7 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6D42B84C2441515C0018C6D7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = 6D42B84C2441515C0018C6D7 /* RemoteSwiftPackageReference */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
